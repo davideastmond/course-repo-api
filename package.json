@@ -1,17 +1,15 @@
 {
-  "name": "mongoose-express-ts",
+  "name": "course-repo-api",
   "version": "1.0.0",
-  "description": "Mongoose Node.js Express TypeScript application boilerplate with best practices for API development.",
-  "author": "Paul Cham",
+  "description": "Users can create recommendations re: courses they have taken.",
+  "author": "David Eastmond",
   "license": "MIT",
   "scripts": {
     "tsc": "tsc",
     "watch-tsc": "tsc -w",
-    "deploy": "node dist/src/server.js",
-    "watch-deploy": "nodemon dist/src/server.js",
-    "server": "concurrently \"npm run watch-tsc\" \"npm run watch-deploy\"",
-    "start": "npm run deploy",
-    "heroku-postbuild": "npm run tsc"
+    "dev": "NODE_ENV=development nodemon",
+    "test": "NODE_ENV=test npx jest",
+    "prepare": "husky install"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -33,6 +31,16 @@
     "@types/jsonwebtoken": "^8.3.2",
     "@types/mongoose": "^5.5.0",
     "concurrently": "^4.1.0",
-    "nodemon": "^1.19.0"
+    "dotenv": "^10.0.0",
+    "husky": "^7.0.0",
+    "jest": "^27.0.6",
+    "lint-staged": "^11.0.0",
+    "nodemon": "^1.19.0",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.0.0"
+  },
+  "lint-staged": {
+    "*.{js,css,md,ts}": "prettier --write"
   }
 }
