@@ -9,7 +9,8 @@
     "watch-tsc": "tsc -w",
     "dev": "NODE_ENV=development nodemon",
     "test": "NODE_ENV=test npx jest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "compile": "npm run tsc && rm -r ./dist"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
