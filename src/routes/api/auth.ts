@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 import auth, { logoutIfAuthenticated } from "../../middleware/auth";
 // import Payload from "../../types/Payload";
 import Request from "../../types/Request";
-import User, { IUser } from "../../models/User";
+
 import passport from "passport";
 import GooglePassportStrategy from "../../auth-strategies/google-passport-strategy";
 const router: Router = Router();
