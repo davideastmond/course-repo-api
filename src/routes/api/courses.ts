@@ -20,5 +20,6 @@ router.post("/", async (req: any, res: any) => {
 
 router.post("/test", async (req: any, res: any) => {
   // A route to fill DB
+  res.status(200).send("OK");
 });
 export default router;

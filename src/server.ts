@@ -13,7 +13,6 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-console.log("Cookies", process.env.COOKIE1, process.env.COOKIE2);
 // Express configuration
 app.set("port", process.env.PORT || 5000);
 app.use(

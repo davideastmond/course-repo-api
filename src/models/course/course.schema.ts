@@ -1,4 +1,5 @@
 import { Schema, SchemaOptions } from "mongoose";
+import { fillWithDummyData } from "./course.methods";
 interface SchemaOptionsWithPojoToMixed extends SchemaOptions {
   typePojoToMixed: boolean;
 }
@@ -15,6 +16,11 @@ const CourseSchema: Schema = new Schema(
       default: {},
     },
     tags: [String],
+    category: {
+      type: String,
+      required: false,
+      default: "not-categorized",
+    },
   },
   {
     timestamps: true,
@@ -28,4 +34,5 @@ CourseSchema.index({
   "tags": "text",
 });
 
+CourseSchema.statics.fillWithDummyData = fillWithDummyData;
 export default CourseSchema;
