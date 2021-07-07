@@ -6,6 +6,7 @@ import connectDB from "../config/database";
 import auth from "./routes/api/auth";
 import courses from "./routes/api/courses";
 import passport from "passport";
+import { CourseModel } from "./models/course/course.model";
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const app = express();
@@ -52,4 +53,9 @@ const server = app.listen(port, () =>
   console.log(`Server started on port ${port}`)
 );
 
+// (async() => {
+//   const dummyCourses = await CourseModel.find();
+//   if (dummyCourses && dummyCourses.length > 0) return;
+//   await CourseModel.fillWithDummyData();
+// })();
 export default server;
