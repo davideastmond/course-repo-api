@@ -12,4 +12,7 @@ export async function findOneByGoogleIdOrCreate(
   if (userDocuments && userDocuments.length > 0) {
     return userDocuments[0];
   }
+  console.log("adapted user", user);
+  const newUser = await this.create(user);
+  return newUser;
 }

@@ -7,6 +7,7 @@ export interface ICourse extends Document {
   reviews: {
     [keyof: string]: string;
   };
+  rating: number;
   tags: Array<string>;
   createdAt: Date;
   updatedAt: Date;

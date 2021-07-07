@@ -8,6 +8,7 @@ const CourseSchema: Schema = new Schema(
     courseTitle: { type: String, required: true },
     courseUrl: { type: String, required: true },
     description: { type: String, required: true },
+    rating: { type: Number, required: true, default: 0 },
     reviews: {
       type: Schema.Types.Mixed,
       required: true,

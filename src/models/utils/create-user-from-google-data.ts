@@ -23,5 +23,6 @@ export const getUserFromGoogleData = (profile: IGoogleData): IAdaptedUser => {
     avatar: profile.photos.map((photo) => {
       return { url: photo.value };
     }),
+    courses: [],
   };
 };

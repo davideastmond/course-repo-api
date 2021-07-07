@@ -24,7 +24,7 @@ const UserSchema: Schema = new Schema(
       },
       accessToken: {
         type: String,
-        required: true,
+        required: false,
       },
     },
     avatar: {
