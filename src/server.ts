@@ -5,6 +5,7 @@ import cors from "cors";
 import connectDB from "../config/database";
 import auth from "./routes/api/auth";
 import courses from "./routes/api/courses";
+import users from "./routes/api/users";
 import passport from "passport";
 import { CourseModel } from "./models/course/course.model";
 const cookieSession = require("cookie-session");
@@ -47,15 +48,11 @@ app.get("/success", (req: any, res) => {
 
 app.use("/api/auth", auth);
 app.use("/api/courses", courses);
+app.use("/api/users", users);
 
 const port = app.get("port");
 const server = app.listen(port, () =>
   console.log(`Server started on port ${port}`)
 );
 
-// (async() => {
-//   const dummyCourses = await CourseModel.find();
-//   if (dummyCourses && dummyCourses.length > 0) return;
-//   await CourseModel.fillWithDummyData();
-// })();
 export default server;
