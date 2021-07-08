@@ -20,3 +20,8 @@ export const createDummyCourses = async (req: any, res: any) => {
     return res.status(500).send({ error: "Server error" });
   }
 };
+
+export const createCourseRecommendation = async (req: any, res: any) => {
+  console.log(req.body);
+  res.status(200).send("Ok");
+};
