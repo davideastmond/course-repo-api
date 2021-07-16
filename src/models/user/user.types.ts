@@ -17,6 +17,16 @@ export interface IUser extends Document {
   updatedAt: Date;
 }
 
+export interface ISecureAdaptedUser {
+  firstName: string;
+  lastName: string;
+  _id: string;
+  jobTitle: string;
+  avatar: { url: string }[];
+  courses: string[];
+  createdAt: Date;
+  updatedAt: Date;
+}
 export interface IUserDocument extends IUser, Document {
   createCourseRecommendation: (
     this: IUserDocument,
