@@ -1,6 +1,6 @@
 import { Router, Response } from "express";
 
-import { logoutIfAuthenticated } from "../../middleware/auth";
+import { logoutIfAuthenticated, logUserOut } from "../../middleware/auth";
 
 import Request from "../../types/Request";
 
@@ -27,5 +27,7 @@ router.get(
 router.get("/", routeProtector, (req, res) => {
   res.status(200).send({ authed: true, user: req.user });
 });
+
+router.post("/logout", logUserOut);
 
 export default router;
