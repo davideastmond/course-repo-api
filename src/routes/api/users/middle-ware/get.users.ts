@@ -11,6 +11,8 @@ const adaptToSecureUser = (userDocument: IUser): ISecureAdaptedUser => {
     courses: userDocument.courses,
     createdAt: userDocument.createdAt,
     updatedAt: userDocument.updatedAt,
+    department: userDocument.department,
+    interestTags: userDocument.interestTags,
   };
 };
 export const getUserById = async (req: any, res: any): Promise<void> => {

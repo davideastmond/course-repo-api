@@ -15,6 +15,8 @@ export interface IUser extends Document {
   courses: Array<string>;
   createdAt: Date;
   updatedAt: Date;
+  department: string;
+  interestTags: string[];
 }
 
 export interface ISecureAdaptedUser {
@@ -26,6 +28,8 @@ export interface ISecureAdaptedUser {
   courses: string[];
   createdAt: Date;
   updatedAt: Date;
+  department: string;
+  interestTags: string[];
 }
 export interface IUserDocument extends IUser, Document {
   createCourseRecommendation: (

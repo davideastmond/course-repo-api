@@ -31,6 +31,12 @@ const UserSchema: Schema = new Schema(
       type: [{ url: String }],
     },
     courses: { type: [Schema.Types.ObjectId], required: true, default: [] },
+    interestTags: { type: [String], required: true, default: [] },
+    department: {
+      type: String,
+      required: true,
+      default: "None",
+    },
   },
   {
     timestamps: true,
@@ -42,6 +48,7 @@ UserSchema.index({
   "firstName": "text",
   "lastName": "text",
   "jobTitle": "text",
+  "department": "text",
 });
 
 UserSchema.statics.findOneByGoogleIdOrCreate = findOneByGoogleIdOrCreate;
