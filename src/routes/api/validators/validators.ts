@@ -21,3 +21,7 @@ export const postNewCourseValidator = (): any[] => {
     body("tags").isArray(),
   ];
 };
+
+export const newInterestTagValidator = (): any[] => {
+  return [body("interestTags").exists().isArray()];
+};
