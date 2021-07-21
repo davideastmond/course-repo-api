@@ -20,3 +20,17 @@ export async function createCourseRecommendation(
     courseUrl: data.url,
   });
 }
+
+export async function deleteInterestTags(
+  this: IUserDocument,
+  interestTags: string[]
+): Promise<IUserDocument> {
+  if (!interestTags || interestTags.length === 0) return this;
+  const filteredTags = this.interestTags.filter((tag) => {
+    return !interestTags.includes(tag);
+  });
+
+  this.interestTags = filteredTags;
+  await this.save();
+  return this;
+}

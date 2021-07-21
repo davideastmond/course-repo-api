@@ -21,3 +21,14 @@ export const postNewCourseValidator = (): any[] => {
     body("tags").isArray(),
   ];
 };
+
+export const newInterestTagValidator = (): any[] => {
+  return [body("interestTags").exists().isArray()];
+};
+
+export const patchUserProfileJobTitleDepartmentValidator = (): any[] => {
+  return [
+    body("jobTitle").exists({ checkNull: true }).trim().escape(),
+    body("department").exists({ checkNull: true }).trim().escape(),
+  ];
+};

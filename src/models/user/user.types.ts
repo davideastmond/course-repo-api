@@ -15,6 +15,8 @@ export interface IUser extends Document {
   courses: Array<string>;
   createdAt: Date;
   updatedAt: Date;
+  department: string;
+  interestTags: string[];
 }
 
 export interface ISecureAdaptedUser {
@@ -26,12 +28,18 @@ export interface ISecureAdaptedUser {
   courses: string[];
   createdAt: Date;
   updatedAt: Date;
+  department: string;
+  interestTags: string[];
 }
 export interface IUserDocument extends IUser, Document {
   createCourseRecommendation: (
     this: IUserDocument,
     data: ICourseRecommendationData
   ) => Promise<ICourseDocument>;
+  deleteInterestTags: (
+    this: IUserDocument,
+    interestTags: string[]
+  ) => Promise<IUserDocument>;
 }
 export interface IUserModel extends Model<IUserDocument> {
   findOneByGoogleIdOrCreate: (
