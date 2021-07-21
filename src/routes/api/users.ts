@@ -7,10 +7,12 @@ import {
   getRequestingUser,
   getUserById,
 } from "./users/middle-ware/get.users";
+import { updateUserJobTitleDepartment } from "./users/middle-ware/patch.users";
 import { updateUserInterestTags } from "./users/middle-ware/post.users";
 import {
   getParamIdValidator,
   newInterestTagValidator,
+  patchUserProfileJobTitleDepartmentValidator,
   validate,
 } from "./validators";
 
@@ -47,5 +49,13 @@ router.delete(
   [...getParamIdValidator(), ...newInterestTagValidator()],
   validate,
   deleteTagsByIdAndTagTitles
+);
+
+router.patch(
+  "/:id/profile",
+  routeProtector,
+  [...getParamIdValidator(), patchUserProfileJobTitleDepartmentValidator()],
+  validate,
+  updateUserJobTitleDepartment
 );
 export default router;

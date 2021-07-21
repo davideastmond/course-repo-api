@@ -35,8 +35,8 @@ const UserSchema: Schema = new Schema(
     interestTags: { type: [String], required: true, default: [] },
     department: {
       type: String,
-      required: true,
-      default: "None",
+      required: false,
+      default: "",
     },
   },
   {
