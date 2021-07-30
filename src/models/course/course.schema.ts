@@ -1,6 +1,7 @@
 import { Schema, SchemaOptions } from "mongoose";
+import CourseNoteSchema from "./course-notes.schema";
 import { fillWithDummyData } from "./course.methods";
-interface SchemaOptionsWithPojoToMixed extends SchemaOptions {
+export interface SchemaOptionsWithPojoToMixed extends SchemaOptions {
   typePojoToMixed: boolean;
 }
 const CourseSchema: Schema = new Schema(
@@ -20,6 +21,11 @@ const CourseSchema: Schema = new Schema(
       type: String,
       required: false,
       default: "not-categorized",
+    },
+    details: {
+      type: [CourseNoteSchema],
+      required: false,
+      default: [],
     },
   },
   {

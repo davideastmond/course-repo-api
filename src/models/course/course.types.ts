@@ -1,4 +1,5 @@
 import mongoose, { Document, Model } from "mongoose";
+import { ICourseNote } from "./course-notes.types";
 
 export enum CourseCategory {
   Design = "design",
@@ -20,6 +21,7 @@ export interface ICourse extends Document {
   };
   rating: number;
   tags: Array<string>;
+  details: Array<ICourseNote>;
   createdAt: Date;
   updatedAt: Date;
 }
