@@ -14,11 +14,12 @@ export const validate = (req: any, res: any, next: any): any => {
 
 export const postNewCourseValidator = (): any[] => {
   return [
-    body("courseTitle").not().isEmpty().trim().escape(),
-    body("courseUrl").not().isEmpty().trim().isURL(),
+    body("title").not().isEmpty().trim().escape(),
+    body("rating").not().isEmpty(),
+    body("url").not().isEmpty().trim().isURL(),
     body("description").not().isEmpty().trim().escape(),
-    body("category").not().isEmpty().trim().escape(),
     body("tags").isArray(),
+    body("notes").exists(),
   ];
 };
 

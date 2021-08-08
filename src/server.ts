@@ -54,9 +54,5 @@ const port = app.get("port");
 const server = app.listen(port, () =>
   console.log(`Server started on port ${port}`)
 );
-// (async() => {
-//   const dummyCourses = await CourseModel.find();
-//   if (dummyCourses && dummyCourses.length > 0) return;
-//   await CourseModel.fillWithDummyData();
-// })();
+
 export default server;

@@ -1,4 +1,5 @@
 import mongoose, { Document, Model } from "mongoose";
+import { ICourseNote } from "./course-notes.types";
 
 export enum CourseCategory {
   Design = "design",
@@ -8,18 +9,20 @@ export enum CourseCategory {
   Marketing = "marketing",
   Product = "product",
   Sales = "sales",
+  NoCategory = "no_category",
 }
 export interface ICourse extends Document {
   category?: CourseCategory | string;
   postedByUserId: mongoose.Types.ObjectId;
-  courseTitle: string;
-  courseUrl: string;
+  title: string;
+  url: string;
   description: string;
   reviews: {
     [keyof: string]: string;
   };
   rating: number;
   tags: Array<string>;
+  notes: { [keyof: string]: { [key in number]: string } };
   createdAt: Date;
   updatedAt: Date;
 }
@@ -28,7 +31,7 @@ export type CourseCreationData = {
   category?: CourseCategory | string;
   postedByUserId: mongoose.Types.ObjectId;
   courseTitle: string;
-  courseUrl: string;
+  url: string;
   description: string;
   reviews: {
     [keyof: string]: string;
@@ -37,7 +40,31 @@ export type CourseCreationData = {
   tags: Array<string>;
 };
 
+export type ITakeAwayStripDataCollection = {
+  [key in number]: string;
+};
+
+export type ICourseRecommendationTakeAwayPackage = {
+  [key in number]: {
+    learningBlurb: string;
+    takeAways: ITakeAwayStripDataCollection;
+  };
+};
+
+export interface ICourseRecommendationSubmission {
+  rating: number;
+  title: string;
+  url: string;
+  description: string;
+  category: string;
+  tags: string[];
+  notes: ICourseRecommendationTakeAwayPackage;
+}
+
 export interface ICourseDocument extends ICourse, Document {}
 export interface ICourseModel extends Model<ICourseDocument> {
-  fillWithDummyData: () => Promise<ICourseDocument[]>;
+  createCourse: (
+    submission: ICourseRecommendationSubmission,
+    postedByUserId: string
+  ) => Promise<ICourseDocument>;
 }

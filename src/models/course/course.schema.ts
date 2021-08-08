@@ -1,13 +1,14 @@
 import { Schema, SchemaOptions } from "mongoose";
-import { fillWithDummyData } from "./course.methods";
-interface SchemaOptionsWithPojoToMixed extends SchemaOptions {
+import CourseNoteSchema from "./course-notes.schema";
+import { createCourse } from "./course.methods";
+export interface SchemaOptionsWithPojoToMixed extends SchemaOptions {
   typePojoToMixed: boolean;
 }
 const CourseSchema: Schema = new Schema(
   {
     postedByUserId: { type: Schema.Types.ObjectId, required: true },
-    courseTitle: { type: String, required: true },
-    courseUrl: { type: String, required: true },
+    title: { type: String, required: true },
+    url: { type: String, required: true },
     description: { type: String, required: true },
     rating: { type: Number, required: true, default: 0 },
     reviews: {
@@ -19,7 +20,12 @@ const CourseSchema: Schema = new Schema(
     category: {
       type: String,
       required: false,
-      default: "not-categorized",
+      default: "no_category",
+    },
+    notes: {
+      type: Schema.Types.Mixed,
+      required: false,
+      default: {},
     },
   },
   {
@@ -34,5 +40,5 @@ CourseSchema.index({
   "tags": "text",
 });
 
-CourseSchema.statics.fillWithDummyData = fillWithDummyData;
+CourseSchema.statics.createCourse = createCourse;
 export default CourseSchema;

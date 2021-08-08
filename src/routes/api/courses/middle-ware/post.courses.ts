@@ -1,5 +1,4 @@
 import { CourseModel } from "../../../../models/course/course.model";
-import mongoose from "mongoose";
 
 export const findCourses = async (req: any, res: any, next: any) => {
   try {
@@ -13,28 +12,23 @@ export const findCourses = async (req: any, res: any, next: any) => {
   }
 };
 
-export const createDummyCourses = async (req: any, res: any) => {
-  try {
-    const courses = await CourseModel.fillWithDummyData();
-    return res.status(200).send(courses);
-  } catch (exception) {
-    return res.status(500).send({ error: "Server error" });
-  }
-};
-
 export const createCourseRecommendation = async (req: any, res: any) => {
-  const { courseTitle, courseUrl, description, category, tags } = req.body;
+  const { title, url, rating, description, notes, category, tags } = req.body;
 
-  const placeHolderUserId = mongoose.Types.ObjectId("60e477c746e78b15614b4a34");
+  const placeHolderUserId = req.user.id;
   try {
-    await CourseModel.create({
-      courseTitle,
-      courseUrl,
-      description,
-      category,
-      tags,
-      postedByUserId: placeHolderUserId,
-    });
+    await CourseModel.createCourse(
+      {
+        title,
+        url,
+        description,
+        rating,
+        category,
+        tags,
+        notes,
+      },
+      placeHolderUserId
+    );
     const courses = await CourseModel.find();
     return res.status(200).send(courses);
   } catch (exception) {
