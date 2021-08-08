@@ -3,13 +3,13 @@ import { SchemaOptionsWithPojoToMixed } from "./course.schema";
 
 const CourseNoteSchema: Schema = new Schema(
   {
-    title: {
+    learningBlurb: {
       type: String,
       required: true,
       default: "",
     },
-    notes: {
-      type: [String],
+    takeAways: {
+      type: Schema.Types.Mixed,
       required: false,
       default: [],
     },

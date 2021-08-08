@@ -1,8 +1,30 @@
-import { ICourseDocument } from "./course.types";
-import { MOCK_COURSES, MOCK_COURSES_2 } from "./helpers/mock-data/mock-courses";
 import { CourseModel } from "./course.model";
+import {
+  ICourse,
+  ICourseDocument,
+  ICourseRecommendationSubmission,
+} from "./course.types";
 
-export async function fillWithDummyData(): Promise<ICourseDocument[]> {
-  const dummyCourses = await CourseModel.create(MOCK_COURSES_2);
-  return dummyCourses;
+/**
+ *
+ * @param submission Object that has data needed to create a course
+ * @param postedByUserId User Id
+ */
+export async function createCourse(
+  submission: ICourseRecommendationSubmission,
+  postedByUserId: string
+): Promise<ICourseDocument> {
+  const { title, url, description, rating, category, tags, notes } = submission;
+  const courseRecommendation = {
+    title,
+    url,
+    description,
+    rating,
+    category,
+    tags,
+    notes,
+    postedByUserId,
+  };
+
+  return CourseModel.create(courseRecommendation);
 }

@@ -1,8 +1,8 @@
 import mongoose, { Document, Model } from "mongoose";
 
 export interface ICourseNote extends Document {
-  title: string;
-  notes: Array<string>;
+  learningBlurb: string;
+  takeAways: { [keyof: string]: string };
 }
 
 export interface ICourseNoteDocument extends ICourseNote, Document {}

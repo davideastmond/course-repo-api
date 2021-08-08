@@ -1,21 +1,24 @@
 import { Router } from "express";
+import { routeProtector } from "../../middleware/route-protector";
 import { retrieveAllCoursesFromDb } from "./courses/middle-ware/get.courses";
+import { createCourseRecommendation } from "./courses/middle-ware/post.courses";
 import {
-  createCourseRecommendation,
-  createDummyCourses,
-  findCourses,
-} from "./courses/middle-ware/post.courses";
-import { postNewCourseValidator, validate } from "./validators";
+  categoryParamSanitizer,
+  postNewCourseValidator,
+  validate,
+} from "./validators";
 
 const router: Router = Router();
 
 router.get("/", retrieveAllCoursesFromDb);
 
-router.post("/test", findCourses, createDummyCourses);
 router.post(
   "/",
+  routeProtector,
   postNewCourseValidator(),
+  categoryParamSanitizer(),
   validate,
   createCourseRecommendation
 );
+
 export default router;
