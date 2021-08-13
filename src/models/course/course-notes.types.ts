@@ -1,4 +1,4 @@
-import mongoose, { Document, Model } from "mongoose";
+import { Document, Model } from "mongoose";
 
 export interface ICourseNote extends Document {
   learningBlurb: string;
