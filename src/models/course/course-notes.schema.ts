@@ -1,4 +1,5 @@
 import { Schema } from "mongoose";
+
 import { SchemaOptionsWithPojoToMixed } from "./course.schema";
 
 const CourseNoteSchema: Schema = new Schema(
@@ -11,7 +12,7 @@ const CourseNoteSchema: Schema = new Schema(
     takeAways: {
       type: Schema.Types.Mixed,
       required: false,
-      default: [],
+      default: {},
     },
   },
   {

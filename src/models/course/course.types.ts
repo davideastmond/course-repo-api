@@ -30,7 +30,7 @@ export interface ICourse extends Document {
 export type CourseCreationData = {
   category?: CourseCategory | string;
   postedByUserId: mongoose.Types.ObjectId;
-  courseTitle: string;
+  title: string;
   url: string;
   description: string;
   reviews: {

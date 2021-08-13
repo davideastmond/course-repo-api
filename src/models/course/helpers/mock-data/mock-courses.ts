@@ -5,8 +5,8 @@ export const MOCK_COURSES: CourseCreationData[] = [
   {
     category: CourseCategory.Engineering,
     postedByUserId: mongoose.Types.ObjectId("60e477c746e78b15614b4a34"),
-    courseTitle: "2021 Complete Python Bootcamp From Zero to Hero in Python",
-    courseUrl: "https://www.udemy.com/course/complete-python-bootcamp/",
+    title: "2021 Complete Python Bootcamp From Zero to Hero in Python",
+    url: "https://www.udemy.com/course/complete-python-bootcamp/",
     description:
       "Learn to use Python professionally, learning both Python 2 and Python 3!",
     reviews: {},
@@ -16,8 +16,8 @@ export const MOCK_COURSES: CourseCreationData[] = [
   {
     category: CourseCategory.Design,
     postedByUserId: mongoose.Types.ObjectId("60e477c746e78b15614b4a34"),
-    courseTitle: "User Experience Design Essentials - Adobe XD UI UX Design",
-    courseUrl: "https://www.udemy.com/course/ui-ux-web-design-using-adobe-xd/",
+    title: "User Experience Design Essentials - Adobe XD UI UX Design",
+    url: "https://www.udemy.com/course/ui-ux-web-design-using-adobe-xd/",
     description:
       "Use XD to get a job in UI Design, User Interface, User Experience design, UX design & Web Design",
     reviews: {},
