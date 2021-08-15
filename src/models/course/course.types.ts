@@ -9,9 +9,16 @@ export enum CourseCategory {
   Marketing = "marketing",
   Product = "product",
   Sales = "sales",
+  SoftwareIT = "software",
+  OfficeProductivity = "office_productivity",
+  PhotographyVideo = "photography_video",
+  HealthFitness = "health_fitness",
+  PersonalDevelopment = "personal_development",
+  FinanceAccounting = "finance_accounting",
+  TeachingAcademics = "teaching_academics",
   NoCategory = "no_category",
 }
-export interface ICourse extends Document {
+export interface ICourse {
   category?: CourseCategory | string;
   postedByUserId: mongoose.Types.ObjectId;
   title: string;

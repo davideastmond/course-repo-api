@@ -1,6 +1,4 @@
 import { Schema, SchemaOptions } from "mongoose";
-import CourseNoteSchema from "./course-notes.schema";
-import { createCourse } from "./course.methods";
 export interface SchemaOptionsWithPojoToMixed extends SchemaOptions {
   typePojoToMixed: boolean;
 }
@@ -16,7 +14,11 @@ const CourseSchema: Schema = new Schema(
       required: true,
       default: {},
     },
-    tags: [String],
+    tags: {
+      type: [String],
+      required: true,
+      default: [],
+    },
     category: {
       type: String,
       required: false,
@@ -40,5 +42,4 @@ CourseSchema.index({
   "tags": "text",
 });
 
-CourseSchema.statics.createCourse = createCourse;
 export default CourseSchema;

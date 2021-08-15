@@ -1,5 +1,5 @@
 import { Schema, SchemaOptions } from "mongoose";
-import { deleteInterestTags } from "./user.methods";
+import { createCourseRecommendation, deleteInterestTags } from "./user.methods";
 import { findOneByGoogleIdOrCreate } from "./user.statics";
 interface SchemaOptionsWithPojoToMixed extends SchemaOptions {
   typePojoToMixed: boolean;
@@ -54,4 +54,5 @@ UserSchema.index({
 
 UserSchema.statics.findOneByGoogleIdOrCreate = findOneByGoogleIdOrCreate;
 UserSchema.methods.deleteInterestTags = deleteInterestTags;
+UserSchema.methods.createCourseRecommendation = createCourseRecommendation;
 export default UserSchema;

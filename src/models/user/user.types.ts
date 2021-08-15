@@ -1,7 +1,9 @@
 import { Document, Model } from "mongoose";
-import { ICourseDocument } from "../course/course.types";
+import {
+  ICourseDocument,
+  ICourseRecommendationSubmission,
+} from "../course/course.types";
 import { IAdaptedUser } from "../utils/create-user-from-google-data";
-import { ICourseRecommendationData } from "./user.methods";
 export interface IUser extends Document {
   firstName: string;
   lastName: string;
@@ -34,7 +36,7 @@ export interface ISecureAdaptedUser {
 export interface IUserDocument extends IUser, Document {
   createCourseRecommendation: (
     this: IUserDocument,
-    data: ICourseRecommendationData
+    data: ICourseRecommendationSubmission
   ) => Promise<ICourseDocument>;
   deleteInterestTags: (
     this: IUserDocument,
