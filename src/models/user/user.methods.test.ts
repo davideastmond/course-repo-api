@@ -69,4 +69,16 @@ describe("user.methods.tests", () => {
       expect(courseRecommendation.rating).toBe(0);
     });
   });
+
+  describe("delete course recommendation", () => {
+    it("deletes recommendation correctly", async () => {
+      const mockUser = await UserModel.create(MOCK_USER_DATA);
+      const resultUser = await mockUser.deleteInterestTags([
+        "interest_a",
+        "interest_c",
+      ]);
+      expect(resultUser.interestTags).toHaveLength(1);
+      expect(Array.from(resultUser.interestTags)).toContain("interest_b");
+    });
+  });
 });
