@@ -11,7 +11,7 @@ export enum CourseCategory {
   Sales = "sales",
   NoCategory = "no_category",
 }
-export interface ICourse extends Document {
+export interface ICourse {
   category?: CourseCategory | string;
   postedByUserId: mongoose.Types.ObjectId;
   title: string;

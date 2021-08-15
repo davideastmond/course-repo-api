@@ -16,7 +16,11 @@ const CourseSchema: Schema = new Schema(
       required: true,
       default: {},
     },
-    tags: [String],
+    tags: {
+      type: [String],
+      required: true,
+      default: [],
+    },
     category: {
       type: String,
       required: false,
