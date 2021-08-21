@@ -1,4 +1,5 @@
 import { Schema, SchemaOptions } from "mongoose";
+import { fetchCoursesByInterest } from "./course.methods";
 export interface SchemaOptionsWithPojoToMixed extends SchemaOptions {
   typePojoToMixed: boolean;
 }
@@ -42,4 +43,5 @@ CourseSchema.index({
   "tags": "text",
 });
 
+CourseSchema.statics.fetchCoursesByInterest = fetchCoursesByInterest;
 export default CourseSchema;

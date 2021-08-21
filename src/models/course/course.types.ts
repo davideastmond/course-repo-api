@@ -68,10 +68,20 @@ export interface ICourseRecommendationSubmission {
   notes: ICourseRecommendationTakeAwayPackage;
 }
 
+export enum CourseQueryType {
+  All = "all",
+  ByTags = "by_tags",
+}
+
 export interface ICourseDocument extends ICourse, Document {}
 export interface ICourseModel extends Model<ICourseDocument> {
   createCourse: (
     submission: ICourseRecommendationSubmission,
     postedByUserId: string
   ) => Promise<ICourseDocument>;
+  fetchCoursesByInterest: (data: {
+    limit: number;
+    skip: number;
+    userId: mongoose.Types.ObjectId;
+  }) => Promise<ICourseDocument[]>;
 }
