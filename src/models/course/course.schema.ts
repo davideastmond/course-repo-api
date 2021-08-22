@@ -1,14 +1,13 @@
 import { Schema, SchemaOptions } from "mongoose";
-import { fetchCoursesByInterest } from "./course.methods";
 export interface SchemaOptionsWithPojoToMixed extends SchemaOptions {
   typePojoToMixed: boolean;
 }
 const CourseSchema: Schema = new Schema(
   {
     postedByUserId: { type: Schema.Types.ObjectId, required: true },
-    title: { type: String, required: true },
+    title: { type: String, required: true, index: true },
     url: { type: String, required: true },
-    description: { type: String, required: true },
+    description: { type: String, required: true, index: true },
     rating: { type: Number, required: true, default: 0 },
     reviews: {
       type: Schema.Types.Mixed,
@@ -19,10 +18,11 @@ const CourseSchema: Schema = new Schema(
       type: [String],
       required: true,
       default: [],
+      index: true,
     },
     category: {
       type: String,
-      required: false,
+      required: true,
       default: "no_category",
     },
     notes: {
@@ -40,8 +40,8 @@ const CourseSchema: Schema = new Schema(
 CourseSchema.index({
   "courseTitle": "text",
   "description": "text",
-  "tags": "text",
+  "category": "text",
+  "notes": "text",
 });
 
-CourseSchema.statics.fetchCoursesByInterest = fetchCoursesByInterest;
 export default CourseSchema;

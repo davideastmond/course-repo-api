@@ -2,12 +2,12 @@ import { Router } from "express";
 import { routeProtector } from "../../middleware/route-protector";
 import {
   getCourseDetailById,
-  retrieveCoursesFromDb,
+  retrieveAllCoursesFromDb,
 } from "./courses/middle-ware/get.courses";
 import { createCourseRecommendation } from "./courses/middle-ware/post.courses";
 import {
   categoryParamSanitizer,
-  getAllCoursesLimitSkipQueryTypeBodyValidator,
+  getAllCoursesLimitSkipBodyValidator,
   getParamIdValidator,
   postNewCourseValidator,
   validate,
@@ -17,18 +17,13 @@ const router: Router = Router();
 
 router.get(
   "/",
-  getAllCoursesLimitSkipQueryTypeBodyValidator(),
+  getAllCoursesLimitSkipBodyValidator(),
   validate,
-  retrieveCoursesFromDb
+  retrieveAllCoursesFromDb
 );
 
 router.get("/:id", getParamIdValidator(), validate, getCourseDetailById);
-router.get(
-  "/user",
-  routeProtector,
-  getAllCoursesLimitSkipQueryTypeBodyValidator(),
-  validate
-);
+
 router.post(
   "/",
   routeProtector,
