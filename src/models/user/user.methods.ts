@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { CourseModel } from "../course/course.model";
 import {
   ICourseDocument,
@@ -9,7 +10,7 @@ export async function createCourseRecommendation(
   this: IUserDocument,
   data: ICourseRecommendationSubmission
 ): Promise<ICourseDocument> {
-  return CourseModel.create({
+  const course = await CourseModel.create({
     title: data.title,
     url: data.url,
     description: data.description,
@@ -19,6 +20,12 @@ export async function createCourseRecommendation(
     notes: data.notes,
     postedByUserId: this._id,
   });
+
+  if (!this.interestTags.includes(course._id)) {
+    this.interestTags.push(course._id);
+  }
+  await this.save();
+  return course;
 }
 
 export async function deleteInterestTags(

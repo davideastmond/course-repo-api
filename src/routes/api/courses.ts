@@ -7,6 +7,7 @@ import {
 import { createCourseRecommendation } from "./courses/middle-ware/post.courses";
 import {
   categoryParamSanitizer,
+  getAllCoursesLimitSkipBodyValidator,
   getParamIdValidator,
   postNewCourseValidator,
   validate,
@@ -14,7 +15,13 @@ import {
 
 const router: Router = Router();
 
-router.get("/", retrieveAllCoursesFromDb);
+router.get(
+  "/",
+  getAllCoursesLimitSkipBodyValidator(),
+  validate,
+  retrieveAllCoursesFromDb
+);
+
 router.get("/:id", getParamIdValidator(), validate, getCourseDetailById);
 
 router.post(

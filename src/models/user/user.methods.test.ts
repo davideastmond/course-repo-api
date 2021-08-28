@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { MongoClient } from "mongodb";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { UserModel } from "./user.model";
 import { MOCK_USER_DATA } from "./mock-user-data";

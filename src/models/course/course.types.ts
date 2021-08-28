@@ -1,5 +1,4 @@
 import mongoose, { Document, Model } from "mongoose";
-import { ICourseNote } from "./course-notes.types";
 
 export enum CourseCategory {
   Design = "design",
@@ -47,14 +46,14 @@ export type CourseCreationData = {
   tags: Array<string>;
 };
 
-export type ITakeAwayStripDataCollection = {
+export type TakeAwayStripDataCollection = {
   [key in number]: string;
 };
 
-export type ICourseRecommendationTakeAwayPackage = {
+export type CourseRecommendationTakeAwayPackage = {
   [key in number]: {
     learningBlurb: string;
-    takeAways: ITakeAwayStripDataCollection;
+    takeAways: TakeAwayStripDataCollection;
   };
 };
 
@@ -65,7 +64,12 @@ export interface ICourseRecommendationSubmission {
   description: string;
   category: string;
   tags: string[];
-  notes: ICourseRecommendationTakeAwayPackage;
+  notes: CourseRecommendationTakeAwayPackage;
+}
+
+export enum CourseQueryType {
+  All = "all",
+  ByTags = "by_tags",
 }
 
 export interface ICourseDocument extends ICourse, Document {}
@@ -74,4 +78,14 @@ export interface ICourseModel extends Model<ICourseDocument> {
     submission: ICourseRecommendationSubmission,
     postedByUserId: string
   ) => Promise<ICourseDocument>;
+  fetchCoursesByInterest: (data: {
+    limit: number;
+    skip: number;
+    userId: mongoose.Types.ObjectId;
+  }) => Promise<ICourseDocument[]>;
+  fetchCoursesByCategory: (data: {
+    category: CourseCategory | string;
+    limit: number;
+    skip: number;
+  }) => Promise<ICourseDocument[]>;
 }

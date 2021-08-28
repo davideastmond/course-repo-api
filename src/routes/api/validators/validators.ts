@@ -1,4 +1,4 @@
-import { body, param, validationResult } from "express-validator/check";
+import { body, param, query, validationResult } from "express-validator/check";
 
 export const getParamIdValidator = (): any[] => {
   return [param("id").not().isEmpty().trim().escape()];
@@ -32,4 +32,8 @@ export const patchUserProfileJobTitleDepartmentValidator = (): any[] => {
     body("jobTitle").exists({ checkNull: true }).trim().escape(),
     body("department").exists({ checkNull: true }).trim().escape(),
   ];
+};
+
+export const getAllCoursesLimitSkipBodyValidator = (): any[] => {
+  return [query("limit").exists().isInt(), query("skip").exists().isInt()];
 };
