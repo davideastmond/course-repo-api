@@ -12,6 +12,13 @@ const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const app = express();
 
+const isProduction = !(
+  process.env.NODE_ENV && process.env.NODE_ENV.match("development")
+);
+
+const DOMAIN = isProduction
+  ? process.env.PRODUCTION_COOKIE_DOMAIN
+  : process.env.DEV_COOKIE_DOMAIN;
 // Connect to MongoDB
 connectDB();
 
@@ -31,8 +38,7 @@ app.use(
     maxAge: 24 * 60 * 60 * 1000, // Day
     name: "course-repo",
     keys: [process.env.COOKIE1, process.env.COOKIE2],
-    domain: "localhost",
-    // secure: isProduction
+    domain: DOMAIN,
   })
 );
 app.use(passport.initialize());
