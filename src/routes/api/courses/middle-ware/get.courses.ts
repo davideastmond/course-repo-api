@@ -2,7 +2,6 @@ import { CourseModel } from "../../../../models/course/course.model";
 
 export const retrieveAllCoursesFromDb = async (req: any, res: any) => {
   const { limit, skip } = req.query;
-  console.log(`limit ${limit} skip ${skip}`);
   try {
     const coursesData = await CourseModel.find()
       .limit(parseInt(limit))
