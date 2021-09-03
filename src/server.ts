@@ -23,7 +23,9 @@ const DOMAIN = isProduction
   : process.env.DEV_COOKIE_DOMAIN;
 
 console.log("COOKIE DOMAIN is:", DOMAIN);
+// Connect to MongoDB
 connectDB();
+
 app.use(
   cors({
     credentials: true,
