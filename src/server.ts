@@ -40,6 +40,7 @@ app.use(
     keys: [process.env.COOKIE1, process.env.COOKIE2],
     domain: DOMAIN,
     secureProxy: true,
+    secure: isProduction,
   })
 );
 app.use(passport.initialize());
