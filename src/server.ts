@@ -28,7 +28,7 @@ connectDB();
 app.use(
   cors({
     credentials: true,
-    origin: "*",
+    origin: true,
   })
 );
 app.set("port", process.env.PORT || 5000);
@@ -42,7 +42,7 @@ app.use(
     keys: [process.env.COOKIE1, process.env.COOKIE2],
     domain: DOMAIN,
     secure: isProduction,
-    path: "/api",
+    sameSite: "lax",
   })
 );
 app.use(passport.initialize());
