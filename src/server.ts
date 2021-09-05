@@ -26,12 +26,12 @@ connectDB();
 
 // Express configuration
 app.set("port", process.env.PORT || 5000);
-app.use(
-  cors({
-    credentials: true,
-    origin: true,
-  })
-);
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: true,
+//   })
+// );
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
