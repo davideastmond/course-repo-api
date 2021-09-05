@@ -41,8 +41,8 @@ app.use(
     name: "course-repo",
     keys: [process.env.COOKIE1, process.env.COOKIE2],
     domain: DOMAIN,
-    secureProxy: true,
     secure: isProduction,
+    path: "/api",
   })
 );
 app.use(passport.initialize());
