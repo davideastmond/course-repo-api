@@ -20,6 +20,7 @@ const router: Router = Router();
 
 router.get(
   "/:id",
+  routeProtector,
   getParamIdValidator(),
   validate,
   getRequestingUser,
