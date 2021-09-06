@@ -6,11 +6,11 @@ export function logoutIfAuthenticated(
   res: Response,
   next: NextFunction
 ) {
-  req.user && req.logOut();
+  req.logOut();
   next();
 }
 
 export function logUserOut(req: any, res: any) {
-  req.user && req.logOut();
+  req.logOut();
   return res.status(200).send({ status: "ok" });
 }

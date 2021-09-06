@@ -33,25 +33,23 @@ app.set("port", process.env.PORT || 5000);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 if (isProduction) {
   app.set("trust proxy", 1);
 }
+
+const cookieOptions = {
+  maxAge: 24 * 60 * 60 * 1000, // Day
+  name: "course-repo",
+  keys: [process.env.COOKIE1, process.env.COOKIE2],
+  domain: DOMAIN,
+};
 app.use(
-  cookieSession({
-    maxAge: 24 * 60 * 60 * 1000, // Day
-    name: "course-repo",
-    keys: [process.env.COOKIE1, process.env.COOKIE2],
-    domain: DOMAIN,
-    secure: isProduction,
-    sameSite: "none",
-  })
+  isProduction
+    ? cookieSession({ ...cookieOptions, secure: true })
+    : cookieSession(cookieOptions)
 );
-// app.use(session({
-//   secret: [process.env.COOKIE1, process.env.COOKIE2],
-//   cookie: {
-//     secure: isProduction,
-//   }
-// }))
+
 app.use(passport.initialize());
 app.use(passport.session());
 

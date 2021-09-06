@@ -25,7 +25,7 @@ router.get(
   }
 );
 
-router.get("/", routeProtector, (req, res) => {
+router.get("/", routeProtector, (req: any, res: any) => {
   res.status(200).send({ authed: true, user: req.user });
 });
 
