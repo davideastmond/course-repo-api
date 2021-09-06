@@ -12,5 +12,6 @@ export function logoutIfAuthenticated(
 
 export function logUserOut(req: any, res: any) {
   req.logOut();
+  req.session = null;
   return res.status(200).send({ status: "ok" });
 }

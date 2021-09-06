@@ -48,7 +48,7 @@ const cookieOptions = {
 };
 app.use(
   isProduction
-    ? cookieSession({ ...cookieOptions, secure: true })
+    ? cookieSession({ ...cookieOptions, secure: true, sameSite: "none" })
     : cookieSession(cookieOptions)
 );
 
