@@ -66,6 +66,7 @@ app.get("/success", (req: any, res) => {
 app.use("/api/auth", auth);
 app.use("/api/courses", courses);
 app.use("/api/users", users);
+app.use("/api/search", search);
 
 const port = app.get("port");
 const server = app.listen(port, () =>
