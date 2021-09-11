@@ -6,6 +6,7 @@ import connectDB from "../config/database";
 import auth from "./routes/api/auth";
 import courses from "./routes/api/courses";
 import users from "./routes/api/users";
+import search from "./routes/api/search";
 import passport from "passport";
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");

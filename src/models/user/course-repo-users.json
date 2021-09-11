@@ -1,0 +1,117 @@
+[{
+  "_id": {
+    "$oid": "60e477c746e78b15614b4a34"
+  },
+  "courses": [
+    "60e61bccae41b5662c8f8cb2"
+  ],
+  "firstName": "Bea",
+  "lastName": "Arthur",
+  "auth": {
+    "googleId": "113217236031719997398",
+    "email": "bea.arthur@example.com"
+  },
+  "avatar": [
+    {
+      "_id": {
+        "$oid": "60e477c746e78b15614b4a35"
+      },
+      "url": "https://example.com/a/11111"
+    }
+  ],
+  "createdAt": {
+    "$date": "2021-07-06T15:33:27.985Z"
+  },
+  "updatedAt": {
+    "$date": "2021-08-30T21:58:06.247Z"
+  },
+  "__v": 21,
+  "interestTags": [
+    "javascript",
+    "html",
+    "design"
+  ],
+  "department": "Engineering",
+  "jobTitle": "Software Developer"
+},{
+  "_id": {
+    "$oid": "60e4780446e78b15614b4a3a"
+  },
+  "jobTitle": "",
+  "courses": [],
+  "firstName": "Cea",
+  "lastName": "Neubiean",
+  "auth": {
+    "googleId": "107362029885140845785",
+    "email": "cneubs@example.com"
+  },
+  "avatar": [
+    {
+      "_id": {
+        "$oid": "60e4780446e78b15614b4a3b"
+      },
+      "url": "https://example.com/a-/A96-c"
+    }
+  ],
+  "createdAt": {
+    "$date": "2021-07-06T15:34:28.528Z"
+  },
+  "updatedAt": {
+    "$date": "2021-07-06T15:34:28.528Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60e4ce787ce8093a97d9715f"
+  },
+  "jobTitle": "",
+  "courses": [],
+  "firstName": "John",
+  "lastName": "Smith",
+  "auth": {
+    "googleId": "109983664044535964612",
+    "email": "obiwan@example.com"
+  },
+  "avatar": [
+    {
+      "_id": {
+        "$oid": "60e4ce787ce8093a97d97160"
+      },
+      "url": "https://example.com/a/2234h"
+    }
+  ],
+  "createdAt": {
+    "$date": "2021-07-06T21:43:20.761Z"
+  },
+  "updatedAt": {
+    "$date": "2021-07-06T21:43:20.761Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60e83c8e4e467d0be01d243e"
+  },
+  "jobTitle": "Marketing Manager",
+  "courses": [],
+  "firstName": "Clare",
+  "lastName": "Beazley",
+  "auth": {
+    "googleId": "109983664044535964614",
+    "email": "cbeazley@example.com"
+  },
+  "avatar": [
+    {
+      "_id": {
+        "$oid": "60e4ce787ce8093a97d97160"
+      },
+      "url": "https://example.com/a/badbooowains"
+    }
+  ],
+  "createdAt": {
+    "$date": "2021-07-06T21:43:20.761Z"
+  },
+  "updatedAt": {
+    "$date": "2021-07-06T21:43:20.761Z"
+  },
+  "__v": 0
+}]

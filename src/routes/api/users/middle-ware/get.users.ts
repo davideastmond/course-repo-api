@@ -1,20 +1,6 @@
-import { ISecureAdaptedUser, IUser } from "../../../../models/user/user.types";
+import { adaptToSecureUser } from "../../../../models/user/utils";
 import { UserModel } from "../../../../models/user/user.model";
 
-const adaptToSecureUser = (userDocument: IUser): ISecureAdaptedUser => {
-  return {
-    firstName: userDocument.firstName,
-    lastName: userDocument.lastName,
-    _id: userDocument._id,
-    jobTitle: userDocument.jobTitle,
-    avatar: userDocument.avatar,
-    courses: userDocument.courses,
-    createdAt: userDocument.createdAt,
-    updatedAt: userDocument.updatedAt,
-    department: userDocument.department,
-    interestTags: userDocument.interestTags,
-  };
-};
 export const getUserById = async (req: any, res: any): Promise<void> => {
   try {
     const user = await UserModel.findById(req.params.id);
