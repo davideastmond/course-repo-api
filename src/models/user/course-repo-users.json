@@ -8,7 +8,7 @@
   "firstName": "Bea",
   "lastName": "Arthur",
   "auth": {
-    "googleId": "113217236031719997398",
+    "googleId": "abc123456e78b15614b4a34",
     "email": "bea.arthur@example.com"
   },
   "avatar": [
@@ -42,7 +42,7 @@
   "firstName": "Cea",
   "lastName": "Neubiean",
   "auth": {
-    "googleId": "107362029885140845785",
+    "googleId": "10514abc123450845785",
     "email": "cneubs@example.com"
   },
   "avatar": [
@@ -69,7 +69,7 @@
   "firstName": "John",
   "lastName": "Smith",
   "auth": {
-    "googleId": "109983664044535964612",
+    "googleId": "10998932KL964612",
     "email": "obiwan@example.com"
   },
   "avatar": [
@@ -96,7 +96,7 @@
   "firstName": "Clare",
   "lastName": "Beazley",
   "auth": {
-    "googleId": "109983664044535964614",
+    "googleId": "1A64044R964614",
     "email": "cbeazley@example.com"
   },
   "avatar": [
