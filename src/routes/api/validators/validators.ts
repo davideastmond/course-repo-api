@@ -37,3 +37,7 @@ export const patchUserProfileJobTitleDepartmentValidator = (): any[] => {
 export const getAllCoursesLimitSkipBodyValidator = (): any[] => {
   return [query("limit").exists().isInt(), query("skip").exists().isInt()];
 };
+
+export const searchQueryParameterValidator = (): any[] => {
+  return [query("queryString").exists().trim().escape()];
+};

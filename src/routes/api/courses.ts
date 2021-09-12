@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { routeProtector } from "../../middleware/route-protector";
+import {
+  routeProtector,
+  secureRequest,
+} from "../../middleware/route-protector";
 import {
   getCourseDetailById,
   retrieveAllCoursesFromDb,
@@ -17,6 +20,7 @@ const router: Router = Router();
 
 router.get(
   "/",
+  secureRequest,
   getAllCoursesLimitSkipBodyValidator(),
   validate,
   retrieveAllCoursesFromDb
@@ -26,6 +30,7 @@ router.get("/:id", getParamIdValidator(), validate, getCourseDetailById);
 
 router.post(
   "/",
+  secureRequest,
   routeProtector,
   postNewCourseValidator(),
   categoryParamSanitizer(),

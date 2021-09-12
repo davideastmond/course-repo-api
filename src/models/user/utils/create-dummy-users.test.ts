@@ -1,7 +1,6 @@
+import { createDummyUsers } from "./create-dummy-users";
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import { createDummyUsers } from "./utils/create-dummy-users";
-import { searchUsersByKeyword } from "./user.search";
 
 let mongoServer: any;
 
@@ -25,10 +24,7 @@ afterAll(async () => {
   await mongoServer.stop();
 });
 
-describe("Search => user tests", () => {
-  test("searches properly", async () => {
-    await createDummyUsers();
-    const results = await searchUsersByKeyword("lorem");
-    expect(results[0].interestTags.includes("lorem ipsum"));
-  });
+test("creates dummies", async () => {
+  const result = await createDummyUsers();
+  expect(result.length).toBe(5);
 });

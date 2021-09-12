@@ -18,7 +18,7 @@ const CourseSchema: Schema = new Schema(
       type: [String],
       required: true,
       default: [],
-      index: true,
+      //index: true,
     },
     category: {
       type: String,
@@ -42,6 +42,7 @@ CourseSchema.index({
   "description": "text",
   "category": "text",
   "notes": "text",
+  "url": "text",
 });
 
 export default CourseSchema;
