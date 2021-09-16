@@ -12,8 +12,10 @@ export async function searchUsersByKeyword(
   const mongoSearchQuery = { "$search": searchString };
   const usersByIndexedSearch = await UserModel.find({
     "$text": mongoSearchQuery,
-  });
-  const usersByKeywordSearch = await UserModel.find({ interestTags: expr });
+  }).limit(50);
+  const usersByKeywordSearch = await UserModel.find({
+    interestTags: expr,
+  }).limit(50);
   return usersByIndexedSearch
     .map((result) => adaptToSecureUser(result))
     .concat(usersByKeywordSearch.map((result) => adaptToSecureUser(result)));

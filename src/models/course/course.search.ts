@@ -5,8 +5,14 @@ export async function searchCoursesByKeyword(
   query: string
 ): Promise<ICourseDocument[]> {
   if (!query) throw new Error("Invalid query");
+  const expr = new RegExp(query, "i");
 
-  const searchString = query.trim().toLowerCase();
-  const mongoSearchQuery = { "$search": searchString };
-  return CourseModel.find({ "$text": mongoSearchQuery });
+  return CourseModel.find({
+    "$or": [
+      { title: { "$regex": expr } },
+      { description: { "$regex": expr } },
+      { category: { "$regex": expr } },
+      { url: { "$regex": expr } },
+    ],
+  }).limit(50); // POIJ - need a scalable solution
 }

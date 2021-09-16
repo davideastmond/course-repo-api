@@ -38,7 +38,7 @@ const CourseSchema: Schema = new Schema(
   } as SchemaOptionsWithPojoToMixed
 );
 CourseSchema.index({
-  "courseTitle": "text",
+  "title": "text",
   "description": "text",
   "category": "text",
   "notes": "text",
