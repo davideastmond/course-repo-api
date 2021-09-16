@@ -20,7 +20,6 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   (req: Request, res: Response) => {
-    console.log("Google call back success");
     res.redirect("/success");
   }
 );

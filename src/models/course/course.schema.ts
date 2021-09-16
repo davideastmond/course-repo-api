@@ -18,7 +18,7 @@ const CourseSchema: Schema = new Schema(
       type: [String],
       required: true,
       default: [],
-      index: true,
+      //index: true,
     },
     category: {
       type: String,
@@ -38,10 +38,11 @@ const CourseSchema: Schema = new Schema(
   } as SchemaOptionsWithPojoToMixed
 );
 CourseSchema.index({
-  "courseTitle": "text",
+  "title": "text",
   "description": "text",
   "category": "text",
   "notes": "text",
+  "url": "text",
 });
 
 export default CourseSchema;

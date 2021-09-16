@@ -6,8 +6,8 @@ import connectDB from "../config/database";
 import auth from "./routes/api/auth";
 import courses from "./routes/api/courses";
 import users from "./routes/api/users";
+import search from "./routes/api/search";
 import passport from "passport";
-import { CourseModel } from "./models/course/course.model";
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const app = express();
@@ -16,9 +16,12 @@ const isProduction = !(
   process.env.NODE_ENV && process.env.NODE_ENV.match("development")
 );
 
+console.log("isProduction? ", isProduction);
 const DOMAIN = isProduction
   ? process.env.PRODUCTION_COOKIE_DOMAIN
   : process.env.DEV_COOKIE_DOMAIN;
+
+console.log("COOKIE DOMAIN is:", DOMAIN);
 // Connect to MongoDB
 connectDB();
 
@@ -64,6 +67,7 @@ app.get("/success", (req: any, res) => {
 app.use("/api/auth", auth);
 app.use("/api/courses", courses);
 app.use("/api/users", users);
+app.use("/api/search", search);
 
 const port = app.get("port");
 const server = app.listen(port, () =>

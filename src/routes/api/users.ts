@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { routeProtector } from "../../middleware/route-protector";
+import {
+  routeProtector,
+  secureRequest,
+} from "../../middleware/route-protector";
 import { deleteTagsByIdAndTagTitles } from "./users/middle-ware/delete.users";
 import {
   getInterestsByUserId,
@@ -21,6 +24,7 @@ const router: Router = Router();
 router.get(
   "/:id",
   routeProtector,
+  secureRequest,
   getParamIdValidator(),
   validate,
   getRequestingUser,
@@ -30,6 +34,7 @@ router.get(
 router.post(
   "/:id/interests",
   routeProtector,
+  secureRequest,
   [...getParamIdValidator(), ...newInterestTagValidator()],
   validate,
   updateUserInterestTags
@@ -38,6 +43,7 @@ router.post(
 router.get(
   "/:id/interests",
   routeProtector,
+  secureRequest,
   getParamIdValidator(),
   validate,
   getInterestsByUserIdMe,
@@ -47,6 +53,7 @@ router.get(
 router.delete(
   "/:id/interests",
   routeProtector,
+  secureRequest,
   [...getParamIdValidator(), ...newInterestTagValidator()],
   validate,
   deleteTagsByIdAndTagTitles
@@ -55,6 +62,7 @@ router.delete(
 router.patch(
   "/:id/profile",
   routeProtector,
+  secureRequest,
   [...getParamIdValidator(), patchUserProfileJobTitleDepartmentValidator()],
   validate,
   updateUserJobTitleDepartment
