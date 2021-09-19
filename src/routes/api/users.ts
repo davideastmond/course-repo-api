@@ -5,6 +5,7 @@ import {
 } from "../../middleware/route-protector";
 import { deleteTagsByIdAndTagTitles } from "./users/middle-ware/delete.users";
 import {
+  getCoursesByUserId,
   getInterestsByUserId,
   getInterestsByUserIdMe,
   getRequestingUser,
@@ -48,6 +49,15 @@ router.get(
   validate,
   getInterestsByUserIdMe,
   getInterestsByUserId
+);
+
+router.get(
+  "/:id/courses",
+  routeProtector,
+  secureRequest,
+  getParamIdValidator(),
+  validate,
+  getCoursesByUserId
 );
 
 router.delete(

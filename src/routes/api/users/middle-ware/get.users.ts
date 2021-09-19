@@ -1,5 +1,7 @@
 import { adaptToSecureUser } from "../../../../models/user/utils";
 import { UserModel } from "../../../../models/user/user.model";
+import CourseSchema from "../../../../models/course/course.schema";
+import { CourseModel } from "../../../../models/course/course.model";
 
 export const getUserById = async (req: any, res: any): Promise<void> => {
   try {
@@ -74,4 +76,15 @@ export const getInterestsByUserId = async (
     }
     return res.status(200).send(user.interestTags);
   } catch (exception) {}
+};
+
+export const getCoursesByUserId = async (req: any, res: any): Promise<void> => {
+  try {
+    const userCourses = await CourseModel.find({
+      postedByUserId: req.params.id,
+    });
+    return res.status(200).send(userCourses);
+  } catch (exception) {
+    return res.status(500).send({ error: exception.message });
+  }
 };
