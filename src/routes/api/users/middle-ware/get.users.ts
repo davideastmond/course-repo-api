@@ -1,6 +1,5 @@
 import { adaptToSecureUser } from "../../../../models/user/utils";
 import { UserModel } from "../../../../models/user/user.model";
-import CourseSchema from "../../../../models/course/course.schema";
 import { CourseModel } from "../../../../models/course/course.model";
 
 export const getUserById = async (req: any, res: any): Promise<void> => {

@@ -35,10 +35,8 @@ describe("findOneByGoogleIdOrCreate tests", () => {
         googleId: "ABCDEFtest",
       },
     };
-
     await UserModel.create(testUser);
     const googleUser = await UserModel.findOneByGoogleIdOrCreate(testUser);
-
     expect(googleUser.auth.googleId).toBe("ABCDEFtest");
   });
 
