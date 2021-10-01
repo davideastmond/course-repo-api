@@ -12,6 +12,5 @@ export async function findOneByGoogleIdOrCreate(
   if (userDocuments && userDocuments.length > 0) {
     return userDocuments[0];
   }
-  const newUser = await this.create(user);
-  return newUser;
+  return this.create(user);
 }

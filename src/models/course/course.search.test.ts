@@ -34,4 +34,9 @@ describe("Search -> Course", () => {
     expect(results[0]).toHaveProperty("tags");
     expect(results[0].tags.includes("automation")).toBe(true);
   });
+
+  test("search courses throws error with invalid query", async () => {
+    const query = "";
+    await expect(searchCoursesByKeyword(query)).rejects.toThrow();
+  });
 });
