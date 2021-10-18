@@ -2,9 +2,9 @@ import { UserModel } from "./user.model";
 import { ISecureAdaptedUser } from "./user.types";
 import { adaptToSecureUser } from "./utils";
 
-export async function searchUsersByKeyword(
+export const searchUsersByKeyword = async (
   query: string
-): Promise<ISecureAdaptedUser[]> {
+): Promise<ISecureAdaptedUser[]> => {
   if (!query) throw new Error("Invalid query");
   const expr = new RegExp(query, "i");
 
@@ -19,4 +19,4 @@ export async function searchUsersByKeyword(
   return usersByIndexedSearch
     .map((result) => adaptToSecureUser(result))
     .concat(usersByKeywordSearch.map((result) => adaptToSecureUser(result)));
-}
+};

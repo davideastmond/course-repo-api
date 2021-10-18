@@ -69,8 +69,8 @@ describe("user.methods.tests", () => {
     });
   });
 
-  describe("delete course recommendation", () => {
-    it("deletes recommendation correctly", async () => {
+  describe("delete interest tags", () => {
+    it("deletes interest tag from a recommendation", async () => {
       const mockUser = await UserModel.create(MOCK_USER_DATA);
       const resultUser = await mockUser.deleteInterestTags([
         "interest_a",
