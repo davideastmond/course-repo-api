@@ -3,6 +3,7 @@ import {
   routeProtector,
   secureRequest,
 } from "../../middleware/route-protector";
+import { deleteCourseRecommendations } from "./courses/middle-ware/delete.courses";
 import {
   getCourseDetailById,
   retrieveAllCoursesFromDb,
@@ -10,6 +11,7 @@ import {
 import { createCourseRecommendation } from "./courses/middle-ware/post.courses";
 import {
   categoryParamSanitizer,
+  deleteCourseRecommendationsValidator,
   getAllCoursesLimitSkipBodyValidator,
   getParamIdValidator,
   postNewCourseValidator,
@@ -36,6 +38,15 @@ router.post(
   categoryParamSanitizer(),
   validate,
   createCourseRecommendation
+);
+
+router.delete(
+  "/",
+  secureRequest,
+  routeProtector,
+  deleteCourseRecommendationsValidator(),
+  validate,
+  deleteCourseRecommendations
 );
 
 export default router;

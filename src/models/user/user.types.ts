@@ -42,6 +42,10 @@ export interface IUserDocument extends IUser, Document {
     this: IUserDocument,
     interestTags: string[]
   ) => Promise<IUserDocument>;
+  deleteCourseRecommendations: (
+    this: IUserDocument,
+    courseIds: string[]
+  ) => Promise<ISecureAdaptedUser>;
 }
 export interface IUserModel extends Model<IUserDocument> {
   findOneByGoogleIdOrCreate: (
