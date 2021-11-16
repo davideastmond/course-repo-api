@@ -41,3 +41,7 @@ export const getAllCoursesLimitSkipBodyValidator = (): any[] => {
 export const searchQueryParameterValidator = (): any[] => {
   return [query("queryString").exists().trim().escape()];
 };
+
+export const deleteCourseRecommendationsValidator = (): any[] => {
+  return [body("courseIds").exists({ checkNull: true }).isArray()];
+};

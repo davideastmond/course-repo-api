@@ -1,5 +1,10 @@
 import { Schema, SchemaOptions } from "mongoose";
-import { createCourseRecommendation, deleteInterestTags } from "./user.methods";
+import {
+  createCourseRecommendation,
+  deleteCourseRecommendations,
+  deleteInterestTags,
+  reconcileWithCourses,
+} from "./user.methods";
 import { findOneByGoogleIdOrCreate } from "./user.statics";
 interface SchemaOptionsWithPojoToMixed extends SchemaOptions {
   typePojoToMixed: boolean;
@@ -31,7 +36,7 @@ const UserSchema: Schema = new Schema(
     avatar: {
       type: [{ url: String }],
     },
-    courses: { type: [Schema.Types.ObjectId], required: true, default: [] },
+    courses: { type: [String], required: true, default: [] },
     interestTags: { type: [String], required: true, default: [], index: true },
     department: {
       type: String,
@@ -55,4 +60,6 @@ UserSchema.index({
 UserSchema.statics.findOneByGoogleIdOrCreate = findOneByGoogleIdOrCreate;
 UserSchema.methods.deleteInterestTags = deleteInterestTags;
 UserSchema.methods.createCourseRecommendation = createCourseRecommendation;
+UserSchema.methods.deleteCourseRecommendations = deleteCourseRecommendations;
+UserSchema.methods.reconcileWithCourses = reconcileWithCourses;
 export default UserSchema;
