@@ -38,6 +38,8 @@ async function authenticateUser(
     const user = await UserModel.findOneByGoogleIdOrCreate(
       getUserFromGoogleData(profile)
     );
+    await user.reconcileWithCourses();
+    console.log("Reconciling courses...");
     done(undefined, user);
   } catch (err) {
     done(err, undefined);

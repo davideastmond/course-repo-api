@@ -6,6 +6,7 @@ import {
   CourseCategory,
   ICourseRecommendationSubmission,
 } from "../course/course.types";
+import { CourseModel } from "../course/course.model";
 let mongoServer: any;
 
 const options: mongoose.ConnectionOptions = {
@@ -60,12 +61,14 @@ describe("user.methods.tests", () => {
       const courseRecommendation = await mockUser.createCourseRecommendation(
         recommendation
       );
+
       expect(courseRecommendation.postedByUserId.toString()).toBe(userId);
       expect(courseRecommendation.title).toBe("mockTitle");
       expect(courseRecommendation.url).toBe("http://www.mockexample.com");
       expect(Array.from(courseRecommendation.tags)).toEqual(["tag1"]);
       expect(courseRecommendation.category).toBe(CourseCategory.Engineering);
       expect(courseRecommendation.rating).toBe(0);
+      expect(mockUser.courses.includes(courseRecommendation.id)).toBe(true);
     });
   });
 
@@ -78,6 +81,55 @@ describe("user.methods.tests", () => {
       ]);
       expect(resultUser.interestTags).toHaveLength(1);
       expect(Array.from(resultUser.interestTags)).toContain("interest_b");
+    });
+  });
+
+  describe("delete course recommendation tests", () => {
+    it("deletes a course recommendation from the DB and from users' courses array", async () => {
+      const recommendation: ICourseRecommendationSubmission = {
+        title: "mockTitle",
+        description: "mockDescription",
+        url: "http://www.mockexample.com",
+        rating: 0,
+        category: CourseCategory.Engineering,
+        tags: ["tag1"] as string[],
+        notes: {},
+      };
+      const mockUser = await UserModel.create(MOCK_USER_DATA);
+      const courseRecommendation = await mockUser.createCourseRecommendation(
+        recommendation
+      );
+
+      expect(mockUser.courses.includes(courseRecommendation.id));
+      // Delete it
+      await mockUser.deleteCourseRecommendations([courseRecommendation.id]);
+      expect(mockUser.courses.includes(courseRecommendation.id)).toBe(false);
+      // Ensure it's deleted from the user and the collection
+      const deletedCourse = await CourseModel.findById(courseRecommendation.id);
+      expect(deletedCourse).toBeNull();
+    });
+    it("should throw an error when not all ids are in user's courses array | empty array", async () => {
+      const recommendation0: ICourseRecommendationSubmission = {
+        title: "mockTitle",
+        description: "mockDescription",
+        url: "http://www.mockexample.com",
+        rating: 0,
+        category: CourseCategory.Engineering,
+        tags: ["tag1"] as string[],
+        notes: {},
+      };
+      const mockUser = await UserModel.create(MOCK_USER_DATA);
+      const rec0 = await mockUser.createCourseRecommendation(recommendation0);
+      await expect(
+        mockUser.deleteCourseRecommendations([rec0.id, "123456789"])
+      ).rejects.toThrow();
+      await expect(mockUser.deleteCourseRecommendations([])).rejects.toThrow();
+    });
+  });
+
+  describe("reconcile with courses tests", () => {
+    it("properly reconciles", async () => {
+      // const mockUser = await UserModel.create(MOCK_USER_DATA);
     });
   });
 });
