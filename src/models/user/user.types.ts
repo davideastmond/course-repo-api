@@ -46,6 +46,7 @@ export interface IUserDocument extends IUser, Document {
     this: IUserDocument,
     courseIds: string[]
   ) => Promise<ISecureAdaptedUser>;
+  reconcileWithCourses: (this: IUserDocument) => Promise<IUserDocument>;
 }
 export interface IUserModel extends Model<IUserDocument> {
   findOneByGoogleIdOrCreate: (
