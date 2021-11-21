@@ -16,6 +16,7 @@
     "compile": "npm run tsc && rm -r ./dist"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "bcryptjs": "^2.4.3",
     "config": "^3.1.0",
     "cookie-parser": "^1.4.5",
@@ -28,8 +29,10 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mongoose": "^5.5.7",
+    "node-html-parser": "^5.1.0",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
+    "puppeteer": "^11.0.0",
     "request": "^2.88.0",
     "typescript": "^3.4.5"
   },
