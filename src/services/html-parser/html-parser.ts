@@ -1,13 +1,13 @@
 import axios from "axios";
 import { parse } from "node-html-parser";
 
-export type HtmlExtractionData = {
-  description: string | string[];
-  title: string;
-  keyPoints?: any[] | undefined;
+type HtmlExtractionData = {
+  description: string | null;
+  title: string | null;
+  keyPoints?: any[] | null;
 };
 
-export enum CourseProvider {
+enum CourseProvider {
   Udemy = "udemy",
   LinkedInLearning = "linkedin",
   FreeCodeCamp = "freecodecamp",
@@ -169,10 +169,3 @@ export async function getAutoFillDataFromURL(url: string) {
     `Unable to auto-complete: provider likely not supported for URL ${url}`
   );
 }
-
-// (async() => {
-//   const info = await getAutoFillDataFromURL("https://www.freecodecamp.org/learn/machine-learning-with-python");
-//   console.log("TITLE:", info.title)
-//   console.log("DESC:", info.description)
-//   console.log("KEY_POINTS:", info.keyPoints)
-// })();

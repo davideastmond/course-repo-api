@@ -7,6 +7,7 @@ import auth from "./routes/api/auth";
 import courses from "./routes/api/courses";
 import users from "./routes/api/users";
 import search from "./routes/api/search";
+import utils from "./routes/api/utils";
 import passport from "passport";
 const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
@@ -65,6 +66,7 @@ app.use("/api/auth", auth);
 app.use("/api/courses", courses);
 app.use("/api/users", users);
 app.use("/api/search", search);
+app.use("/api/utils", utils);
 
 const port = app.get("port");
 const server = app.listen(port, () =>
