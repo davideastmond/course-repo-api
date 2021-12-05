@@ -1,111 +1,17 @@
 import axios from "axios";
 import { parse } from "node-html-parser";
+import {
+  FreeCodeCampProvider,
+  LinkedInLearningProvider,
+  UdemyProvider,
+} from "./providers";
 
-type HtmlExtractionData = {
-  description: string | null;
-  title: string | null;
-  keyPoints?: any[] | null;
-};
+import { CourseProvider, HtmlExtractionData, IProviderManifest } from "./types";
 
-enum CourseProvider {
-  Udemy = "udemy",
-  LinkedInLearning = "linkedin",
-  FreeCodeCamp = "freecodecamp",
-}
-
-const providerDict: {
-  [key in CourseProvider]: {
-    title: (root: any) => string | null;
-    description: (root: any) => string | null;
-    keyPoints: (root: any) => string[] | null;
-  };
-} = {
-  [CourseProvider.Udemy]: {
-    title: (root) =>
-      (root.querySelector(".clp-lead__title") &&
-        root.querySelector(".clp-lead__title").innerHTML) ||
-      null,
-    description: (root) =>
-      (root.querySelector(".clp-lead__headline") &&
-        root.querySelector(".clp-lead__headline").innerHTML) ||
-      null,
-    keyPoints: (root) => {
-      const elements = root.querySelectorAll("li") as any[];
-      if (elements && elements.length && elements.length > 0) {
-        return elements
-          .map((element) => {
-            return element.innerText;
-          })
-          .filter((e) => {
-            return e.trim() !== "";
-          });
-      }
-      return null;
-    },
-  },
-  [CourseProvider.LinkedInLearning]: {
-    title: (root) =>
-      (root.querySelector(".top-card-layout__title") &&
-        root.querySelector(".top-card-layout__title").innerHTML) ||
-      null,
-    description: (root) =>
-      (root.querySelector(".course-details__description") &&
-        root.querySelector(".course-details__description").innerText) ||
-      null,
-    keyPoints: (root) => {
-      const elements = root.querySelectorAll(
-        ".course-skills__skill-list-item"
-      ) as any[];
-      if (elements && elements.length && elements.length > 0) {
-        return elements
-          .map((element) => {
-            return element.innerText.replace(/(\r\n|\n|\r)/gm, "").trim();
-          })
-          .filter((e) => {
-            return e.trim() !== "";
-          });
-      }
-      return null;
-    },
-  },
-  [CourseProvider.FreeCodeCamp]: {
-    title: (root) =>
-      (root.querySelector("h1.big-heading") &&
-        root.querySelector("h1.big-heading").innerText) ||
-      null,
-    description: (root) => {
-      const elements = root.querySelectorAll("div > p") as any[];
-      if (elements && elements.length && elements.length > 0) {
-        const descriptionString = [];
-        for (
-          let htmlElementIndex = 0;
-          htmlElementIndex < elements.length;
-          htmlElementIndex++
-        ) {
-          descriptionString.push(elements[htmlElementIndex].innerText);
-          if (htmlElementIndex >= 2) break;
-        }
-        return descriptionString.join("");
-      }
-      return null;
-    },
-    keyPoints: (root) => {
-      const elements = root.querySelectorAll("h3.big-block-title");
-      if (elements && elements.length && elements.length > 0) {
-        const bulletPoints = [];
-        for (
-          let htmlElementIndex = 0;
-          htmlElementIndex < elements.length;
-          htmlElementIndex++
-        ) {
-          bulletPoints.push(elements[htmlElementIndex].innerText);
-          if (htmlElementIndex >= 2) break;
-        }
-        return bulletPoints;
-      }
-      return null;
-    },
-  },
+const providerManifest: IProviderManifest = {
+  [CourseProvider.Udemy]: UdemyProvider,
+  [CourseProvider.LinkedInLearning]: LinkedInLearningProvider,
+  [CourseProvider.FreeCodeCamp]: FreeCodeCampProvider,
 };
 
 function getProviderSelectors({
@@ -116,9 +22,10 @@ function getProviderSelectors({
   root: any;
 }): HtmlExtractionData {
   return {
-    title: providerDict[provider].title(root),
-    description: providerDict[provider].description(root),
-    keyPoints: providerDict[provider].keyPoints(root),
+    title: providerManifest[provider].title(root),
+    description: providerManifest[provider].description(root),
+    keyPoints: providerManifest[provider].keyPoints(root),
+    category: providerManifest[provider].category(root),
   };
 }
 
@@ -132,7 +39,9 @@ const getHtml = async ({ url }: { url: string }): Promise<string | null> => {
       return request.data;
     }
   } catch (exception) {
-    throw new Error(`getHTML: unable to GET data from URL: ${url}`);
+    throw new Error(
+      `getHTML: unable to GET data from URL: ${url}, response is ${exception}`
+    );
   }
 };
 
@@ -144,11 +53,11 @@ const extractHTMLData = ({
   provider: CourseProvider;
 }) => {
   const root = parse(htmlData);
-  const { title, description, keyPoints } = getProviderSelectors({
+  const { title, description, keyPoints, category } = getProviderSelectors({
     provider,
     root,
   });
-  return { description, title, keyPoints };
+  return { description, title, keyPoints, category };
 };
 
 const getProvider = ({ url }: { url: string }): CourseProvider | null => {
@@ -169,3 +78,14 @@ export async function getAutoFillDataFromURL(url: string) {
     `Unable to auto-complete: provider likely not supported for URL ${url}`
   );
 }
+
+const sandbox = {
+  run: async (url: string) => getAutoFillDataFromURL(url),
+};
+
+(async () => {
+  const value = await sandbox.run(
+    "https://www.freecodecamp.org/learn/responsive-web-design/"
+  );
+  console.log("Value", value);
+})();
