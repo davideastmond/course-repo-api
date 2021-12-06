@@ -30,7 +30,7 @@ export const FreeCodeCampProvider: ILearningProvider = {
         htmlElementIndex < elements.length;
         htmlElementIndex++
       ) {
-        bulletPoints.push(elements[htmlElementIndex].innerText);
+        bulletPoints.push(elements[htmlElementIndex].innerText.slice(0, -1));
         if (htmlElementIndex >= 2) break;
       }
       return bulletPoints;
