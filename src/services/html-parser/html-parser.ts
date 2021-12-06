@@ -26,6 +26,7 @@ function getProviderSelectors({
     description: providerManifest[provider].description(root),
     keyPoints: providerManifest[provider].keyPoints(root),
     category: providerManifest[provider].category(root),
+    provider,
   };
 }
 
@@ -47,17 +48,18 @@ const getHtml = async ({ url }: { url: string }): Promise<string | null> => {
 
 const extractHTMLData = ({
   htmlData,
-  provider,
+  courseProvider,
 }: {
   htmlData: string;
-  provider: CourseProvider;
+  courseProvider: CourseProvider;
 }) => {
   const root = parse(htmlData);
-  const { title, description, keyPoints, category } = getProviderSelectors({
-    provider,
-    root,
-  });
-  return { description, title, keyPoints, category };
+  const { title, description, keyPoints, category, provider } =
+    getProviderSelectors({
+      provider: courseProvider,
+      root,
+    });
+  return { description, title, keyPoints, category, provider };
 };
 
 const getProvider = ({ url }: { url: string }): CourseProvider | null => {
@@ -69,10 +71,10 @@ const getProvider = ({ url }: { url: string }): CourseProvider | null => {
 };
 
 export async function getAutoFillDataFromURL(url: string) {
-  const provider = getProvider({ url });
-  if (provider) {
+  const courseProvider = getProvider({ url });
+  if (courseProvider) {
     const htmlData = await getHtml({ url });
-    return extractHTMLData({ htmlData, provider });
+    return extractHTMLData({ htmlData, courseProvider });
   }
   throw new Error(
     `Unable to auto-complete: provider likely not supported for URL ${url}`

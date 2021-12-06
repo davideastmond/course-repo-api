@@ -3,6 +3,7 @@ export type HtmlExtractionData = {
   title: string | null;
   keyPoints?: any[] | null;
   category?: string[] | null;
+  provider: CourseProvider;
 };
 
 export enum CourseProvider {

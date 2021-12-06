@@ -1,4 +1,5 @@
 import { ILearningProvider } from "../../types";
+import { decodeString } from "../../utils";
 
 export const FreeCodeCampProvider: ILearningProvider = {
   title: (root: any) =>
@@ -17,7 +18,7 @@ export const FreeCodeCampProvider: ILearningProvider = {
         descriptionString.push(elements[htmlElementIndex].innerText);
         if (htmlElementIndex >= 2) break;
       }
-      return descriptionString.join("");
+      return decodeString(descriptionString.join(""));
     }
     return null;
   },
