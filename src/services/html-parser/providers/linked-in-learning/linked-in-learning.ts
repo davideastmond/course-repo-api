@@ -1,5 +1,5 @@
 import { ILearningProvider } from "../../types";
-import { removeLineBreaks } from "../../utils";
+import { decodeString, removeLineBreaks } from "../../utils";
 
 const getLinkedInKeyPoints = (root: any) => {
   const elements = root.querySelectorAll(
@@ -23,14 +23,16 @@ export const LinkedInLearningProvider: ILearningProvider = {
       root.querySelector(".top-card-layout__title").innerHTML &&
       root.querySelector(".top-card-layout__title").innerHTML.trim()) ||
     null,
-  description: (root) =>
-    (root.querySelector(".course-details__description") &&
+  description: (root) => {
+    const extractedData =
+      root.querySelector(".course-details__description") &&
       (root.querySelector(".course-details__description") as HTMLElement)
         .innerText &&
       (
         root.querySelector(".course-details__description") as HTMLElement
-      ).innerText.trim()) ||
-    null,
+      ).innerText.trim();
+    return extractedData ? decodeString(extractedData) : null;
+  },
   keyPoints: (root) => getLinkedInKeyPoints(root),
   category: (root) => getLinkedInKeyPoints(root),
 };
