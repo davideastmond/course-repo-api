@@ -7,7 +7,7 @@ const sandbox = {
 
 (async () => {
   const value = await sandbox.run(
-    "https://www.udemy.com/course/machinelearning/"
+    "https://www.coursera.org/professional-certificates/google-data-analytics"
   );
   console.log("Value", value);
 })();
