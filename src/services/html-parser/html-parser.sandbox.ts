@@ -7,7 +7,7 @@ const sandbox = {
 
 (async () => {
   const value = await sandbox.run(
-    "https://www.coursera.org/professional-certificates/google-data-analytics"
+    "https://www.coursera.org/specializations/aws-python-serverless-development"
   );
   console.log("Value", value);
 })();
