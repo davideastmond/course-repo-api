@@ -32,7 +32,6 @@
     "node-html-parser": "^5.1.0",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
-    "puppeteer": "^11.0.0",
     "request": "^2.88.0",
     "typescript": "^3.4.5"
   },
