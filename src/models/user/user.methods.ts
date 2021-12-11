@@ -7,15 +7,16 @@ import {
 } from "../course/course.types";
 import { ISecureAdaptedUser, IUserDocument } from "./user.types";
 import { adaptToSecureUser } from "./utils";
+import { decodeString } from "../../services/html-parser/utils";
 
 export async function createCourseRecommendation(
   this: IUserDocument,
   data: ICourseRecommendationSubmission
 ): Promise<ICourseDocument> {
   const course = await CourseModel.create({
-    title: data.title,
+    title: decodeString(data.title),
     url: data.url,
-    description: data.description,
+    description: decodeString(data.description),
     rating: data.rating,
     category: data.category,
     tags: data.tags,
