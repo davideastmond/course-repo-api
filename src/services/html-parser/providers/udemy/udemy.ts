@@ -1,4 +1,4 @@
-import { removeLineBreaks } from "../../utils";
+import { decodeString, removeLineBreaks } from "../../utils";
 import { arrangeStrings } from "./utils";
 
 export const UdemyProvider = {
@@ -7,7 +7,9 @@ export const UdemyProvider = {
       root.querySelector(".clp-lead__title") &&
       root.querySelector(".clp-lead__title").innerHTML
     ) {
-      return removeLineBreaks(root.querySelector(".clp-lead__title").innerHTML);
+      return decodeString(
+        removeLineBreaks(root.querySelector(".clp-lead__title").innerHTML)
+      );
     }
     return null;
   },
@@ -16,8 +18,8 @@ export const UdemyProvider = {
       root.querySelector(".clp-lead__headline") &&
       root.querySelector(".clp-lead__headline").innerHTML
     ) {
-      return removeLineBreaks(
-        root.querySelector(".clp-lead__headline").innerHTML
+      return decodeString(
+        removeLineBreaks(root.querySelector(".clp-lead__headline").innerHTML)
       );
     }
     return null;

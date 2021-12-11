@@ -7,7 +7,7 @@ const sandbox = {
 
 (async () => {
   const value = await sandbox.run(
-    "https://www.freecodecamp.org/learn/responsive-web-design/"
+    "https://www.udemy.com/course/machinelearning/"
   );
   console.log("Value", value);
 })();
