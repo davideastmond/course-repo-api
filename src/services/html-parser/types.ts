@@ -10,6 +10,7 @@ export enum CourseProvider {
   Udemy = "udemy",
   LinkedInLearning = "linkedin",
   FreeCodeCamp = "freecodecamp",
+  Coursera = "coursera",
 }
 
 export type IProviderManifest = {

@@ -4,6 +4,7 @@ import {
   FreeCodeCampProvider,
   LinkedInLearningProvider,
   UdemyProvider,
+  CourseraProvider,
 } from "./providers";
 
 import { CourseProvider, HtmlExtractionData, IProviderManifest } from "./types";
@@ -12,6 +13,7 @@ const providerManifest: IProviderManifest = {
   [CourseProvider.Udemy]: UdemyProvider,
   [CourseProvider.LinkedInLearning]: LinkedInLearningProvider,
   [CourseProvider.FreeCodeCamp]: FreeCodeCampProvider,
+  [CourseProvider.Coursera]: CourseraProvider,
 };
 
 function getProviderSelectors({
