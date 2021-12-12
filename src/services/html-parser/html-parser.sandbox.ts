@@ -1,3 +1,5 @@
+import { CourseCategory } from "../../models/course/course.types";
+import { categoryDict } from "./definitions";
 import { getAutoFillDataFromURL } from "./html-parser";
 
 const sandbox = {
@@ -7,7 +9,7 @@ const sandbox = {
 
 (async () => {
   const value = await sandbox.run(
-    "https://www.coursera.org/specializations/aws-python-serverless-development"
+    "https://www.edx.org/course/religion-conflict-and-peace"
   );
   console.log("Value", value);
 })();

@@ -1,19 +1,22 @@
 import axios from "axios";
 import { parse } from "node-html-parser";
+import { CourseProvider } from "./definitions";
 import {
   FreeCodeCampProvider,
   LinkedInLearningProvider,
   UdemyProvider,
   CourseraProvider,
+  EdxProvider,
 } from "./providers";
 
-import { CourseProvider, HtmlExtractionData, IProviderManifest } from "./types";
+import { HtmlExtractionData, IProviderManifest } from "./types";
 
 const providerManifest: IProviderManifest = {
   [CourseProvider.Udemy]: UdemyProvider,
   [CourseProvider.LinkedInLearning]: LinkedInLearningProvider,
   [CourseProvider.FreeCodeCamp]: FreeCodeCampProvider,
   [CourseProvider.Coursera]: CourseraProvider,
+  [CourseProvider.Edx]: EdxProvider,
 };
 
 function getProviderSelectors({
@@ -24,10 +27,10 @@ function getProviderSelectors({
   root: any;
 }): HtmlExtractionData {
   return {
-    title: providerManifest[provider].title(root),
-    description: providerManifest[provider].description(root),
-    keyPoints: providerManifest[provider].keyPoints(root),
-    category: providerManifest[provider].category(root),
+    title: providerManifest[provider].title(root, parse),
+    description: providerManifest[provider].description(root, parse),
+    keyPoints: providerManifest[provider].keyPoints(root, parse),
+    category: providerManifest[provider].category(root, parse),
     provider,
   };
 }

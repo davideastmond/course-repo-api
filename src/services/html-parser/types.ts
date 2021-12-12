@@ -1,3 +1,6 @@
+import { Options } from "node-html-parser";
+import { CourseProvider } from "./definitions";
+
 export type HtmlExtractionData = {
   description: string | null;
   title: string | null;
@@ -6,20 +9,27 @@ export type HtmlExtractionData = {
   provider: CourseProvider;
 };
 
-export enum CourseProvider {
-  Udemy = "udemy",
-  LinkedInLearning = "linkedin",
-  FreeCodeCamp = "freecodecamp",
-  Coursera = "coursera",
-}
-
 export type IProviderManifest = {
   [key in CourseProvider]: ILearningProvider;
 };
 
 export interface ILearningProvider {
-  title: (root: Partial<HTMLElement>) => string | null;
-  description: (root: Partial<HTMLElement>) => string | null;
-  keyPoints: (root: Partial<HTMLElement>) => string[] | null;
-  category: (root: Partial<HTMLElement>) => string[] | null;
+  title: (
+    root: Partial<HTMLElement>,
+    extraParser?: (data: string, options?: Partial<Options>) => void
+  ) => string | null;
+  description: (
+    root: Partial<HTMLElement>,
+    extraParser?: (data: string, options?: Partial<Options>) => void
+  ) => string | null;
+  keyPoints: (
+    root: Partial<HTMLElement>,
+    extraParser?: (data: string, options?: Partial<Options>) => void
+  ) => string[] | null;
+  category: (
+    root: Partial<HTMLElement>,
+    extraParser?: (data: string, options?: Partial<Options>) => void
+  ) => string[] | null;
 }
+
+interface IExtraParser {}
