@@ -15,6 +15,7 @@ export enum CourseCategory {
   PersonalDevelopment = "personal_development",
   FinanceAccounting = "finance_accounting",
   TeachingAcademics = "teaching_academics",
+  ArtsHumanities = "arts_humanities",
   NoCategory = "no_category",
 }
 export interface ICourse {

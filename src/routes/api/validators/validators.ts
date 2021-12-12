@@ -23,6 +23,10 @@ export const postNewCourseValidator = (): any[] => {
   ];
 };
 
+export const utilsURLValidator = (): any[] => {
+  return [body("url").not().isEmpty().trim().isURL()];
+};
+
 export const newInterestTagValidator = (): any[] => {
   return [body("interestTags").exists().isArray()];
 };
