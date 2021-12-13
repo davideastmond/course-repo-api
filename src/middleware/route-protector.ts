@@ -18,7 +18,8 @@ export function secureRequest(req: any, res: any, next: any) {
     ? process.env.PRODUCTION_API_TOKEN
     : process.env.DEV_API_TOKEN;
 
-  const bearerToken = req.header("Authorization")?.split(" ")[1];
+  const bearerToken =
+    req.header("Authorization") && req.header("Authorization").split(" ")[1];
 
   if (bearerToken === API_TOKEN) {
     next();
