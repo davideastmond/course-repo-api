@@ -1,11 +1,12 @@
 import { Schema, SchemaOptions } from "mongoose";
 import {
+  deleteInterestTags,
   createCourseRecommendation,
   deleteCourseRecommendations,
-  deleteInterestTags,
   reconcileWithCourses,
-} from "./user.methods";
-import { findOneByGoogleIdOrCreate } from "./user.statics";
+} from "../../controllers/user/user.methods";
+import { findOneByGoogleIdOrCreate } from "../../controllers/user/user.statics";
+
 interface SchemaOptionsWithPojoToMixed extends SchemaOptions {
   typePojoToMixed: boolean;
 }

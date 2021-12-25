@@ -30,6 +30,7 @@ export interface ICourse {
   rating: number;
   tags: Array<string>;
   notes: { [keyof: string]: { [key in number]: string } };
+  likes: { [keyof: string]: Date };
   createdAt: Date;
   updatedAt: Date;
 }
@@ -43,6 +44,7 @@ export type CourseCreationData = {
   reviews: {
     [keyof: string]: string;
   };
+  likes: {};
   rating: number;
   tags: Array<string>;
 };

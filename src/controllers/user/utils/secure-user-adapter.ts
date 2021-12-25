@@ -1,4 +1,4 @@
-import { IUser, ISecureAdaptedUser } from "../user.types";
+import { IUser, ISecureAdaptedUser } from "../../../models/user/user.types";
 
 export const adaptToSecureUser = (userDocument: IUser): ISecureAdaptedUser => {
   return {

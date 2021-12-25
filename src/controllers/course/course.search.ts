@@ -1,5 +1,5 @@
-import { CourseModel } from "./course.model";
-import { ICourseDocument } from "./course.types";
+import { CourseModel } from "../../models/course/course.model";
+import { ICourseDocument } from "../../models/course/course.types";
 
 export async function searchCoursesByKeyword(
   query: string

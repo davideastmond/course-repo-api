@@ -14,6 +14,7 @@ import {
 import { updateUserJobTitleDepartment } from "./users/middle-ware/patch.users";
 import { updateUserInterestTags } from "./users/middle-ware/post.users";
 import {
+  getCourseIdValidator,
   getParamIdValidator,
   newInterestTagValidator,
   patchUserProfileJobTitleDepartmentValidator,
@@ -76,5 +77,13 @@ router.patch(
   [...getParamIdValidator(), patchUserProfileJobTitleDepartmentValidator()],
   validate,
   updateUserJobTitleDepartment
+);
+
+router.patch(
+  "/:id/courses/:courseId/likes",
+  routeProtector,
+  secureRequest,
+  [...getParamIdValidator(), ...getCourseIdValidator()],
+  validate
 );
 export default router;

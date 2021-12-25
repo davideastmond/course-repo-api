@@ -1,5 +1,5 @@
-import { UserModel } from "./user.model";
-import { ISecureAdaptedUser } from "./user.types";
+import { UserModel } from "../../models/user/user.model";
+import { ISecureAdaptedUser } from "../../models/user/user.types";
 import { adaptToSecureUser } from "./utils";
 
 export const searchUsersByKeyword = async (

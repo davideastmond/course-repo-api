@@ -1,4 +1,4 @@
-import { IUser } from "../user/user.types";
+import { IUser } from "../../../models/user/user.types";
 
 export interface IGoogleData {
   id: string;

@@ -3,6 +3,9 @@ import { body, param, query, validationResult } from "express-validator/check";
 export const getParamIdValidator = (): any[] => {
   return [param("id").not().isEmpty().trim().escape()];
 };
+export const getCourseIdValidator = (): any[] => {
+  return [param("courseId").not().isEmpty().trim().escape()];
+};
 
 export const validate = (req: any, res: any, next: any): any => {
   const errors = validationResult(req);
