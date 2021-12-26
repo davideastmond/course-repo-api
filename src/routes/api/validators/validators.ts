@@ -52,3 +52,7 @@ export const searchQueryParameterValidator = (): any[] => {
 export const deleteCourseRecommendationsValidator = (): any[] => {
   return [body("courseIds").exists({ checkNull: true }).isArray()];
 };
+
+export const userIdValidator = (): any[] => {
+  return [body("userId").not().isEmpty().trim().escape()];
+};

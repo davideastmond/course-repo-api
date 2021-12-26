@@ -12,5 +12,6 @@ export const adaptToSecureUser = (userDocument: IUser): ISecureAdaptedUser => {
     updatedAt: userDocument.updatedAt,
     department: userDocument.department,
     interestTags: userDocument.interestTags,
+    likedCourses: userDocument.likedCourses,
   };
 };

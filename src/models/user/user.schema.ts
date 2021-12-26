@@ -39,6 +39,7 @@ const UserSchema: Schema = new Schema(
     },
     courses: { type: [String], required: true, default: [] },
     interestTags: { type: [String], required: true, default: [], index: true },
+    likedCourses: { type: Schema.Types.Mixed, required: true, default: {} },
     department: {
       type: String,
       required: false,

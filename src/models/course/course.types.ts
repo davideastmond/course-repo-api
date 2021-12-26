@@ -74,6 +74,10 @@ export enum CourseQueryType {
   All = "all",
   ByTags = "by_tags",
 }
+export interface ILikeToggleActionResult {
+  courses: ICourse[];
+  actionTaken: "like" | "unlike";
+}
 
 export interface ICourseDocument extends ICourse, Document {}
 export interface ICourseModel extends Model<ICourseDocument> {
