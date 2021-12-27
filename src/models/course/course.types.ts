@@ -77,6 +77,7 @@ export enum CourseQueryType {
 export interface ILikeToggleActionResult {
   courses: ICourse[];
   actionTaken: "like" | "unlike";
+  courseChanged: ICourse;
 }
 
 export interface ICourseDocument extends ICourse, Document {}

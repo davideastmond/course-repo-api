@@ -30,7 +30,11 @@ export async function doToggleCourseLike({
       await user.save();
       await course.save();
       const allCourses = await CourseModel.find();
-      return { courses: allCourses, actionTaken: "unlike" };
+      return {
+        courses: allCourses,
+        actionTaken: "unlike",
+        courseChanged: course,
+      };
     } else {
       // add records to course and user
       user.likedCourses[`${course._id.toString()}`] = new Date();
@@ -40,7 +44,11 @@ export async function doToggleCourseLike({
       await user.save();
       await course.save();
       const allCourses = await CourseModel.find();
-      return { courses: allCourses, actionTaken: "like" };
+      return {
+        courses: allCourses,
+        actionTaken: "like",
+        courseChanged: course,
+      };
     }
   }
 }
