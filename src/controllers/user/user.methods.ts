@@ -1,13 +1,17 @@
 import mongoose from "mongoose";
 import _pullAll from "lodash/pullAll";
-import { CourseModel } from "../course/course.model";
-import {
-  ICourseDocument,
-  ICourseRecommendationSubmission,
-} from "../course/course.types";
-import { ISecureAdaptedUser, IUserDocument } from "./user.types";
+
 import { adaptToSecureUser } from "./utils";
 import { decodeString } from "../../services/html-parser/utils";
+import { CourseModel } from "../../models/course/course.model";
+import {
+  ICourseRecommendationSubmission,
+  ICourseDocument,
+} from "../../models/course/course.types";
+import {
+  IUserDocument,
+  ISecureAdaptedUser,
+} from "../../models/user/user.types";
 
 export async function createCourseRecommendation(
   this: IUserDocument,
@@ -21,6 +25,7 @@ export async function createCourseRecommendation(
     category: data.category,
     tags: data.tags,
     notes: data.notes,
+    likes: {},
     postedByUserId: this._id,
   });
 

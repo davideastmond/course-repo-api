@@ -1,12 +1,14 @@
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
-import { UserModel } from "./user.model";
+
 import { MOCK_USER_DATA } from "./mock-user-data";
+
+import { UserModel } from "../../models/user/user.model";
+import { CourseModel } from "../../models/course/course.model";
 import {
-  CourseCategory,
   ICourseRecommendationSubmission,
-} from "../course/course.types";
-import { CourseModel } from "../course/course.model";
+  CourseCategory,
+} from "../../models/course/course.types";
 let mongoServer: any;
 
 const options: mongoose.ConnectionOptions = {

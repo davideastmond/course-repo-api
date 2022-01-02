@@ -1,9 +1,10 @@
 import { Document, Model } from "mongoose";
+import { IAdaptedUser } from "../../controllers/user/utils/create-user-from-google-data";
 import {
   ICourseDocument,
   ICourseRecommendationSubmission,
 } from "../course/course.types";
-import { IAdaptedUser } from "../utils/create-user-from-google-data";
+
 export interface IUser extends Document {
   firstName: string;
   lastName: string;
@@ -19,6 +20,7 @@ export interface IUser extends Document {
   updatedAt: Date;
   department: string;
   interestTags: string[];
+  likedCourses: { [keyof: string]: Date };
 }
 
 export interface ISecureAdaptedUser {
@@ -32,6 +34,7 @@ export interface ISecureAdaptedUser {
   updatedAt: Date;
   department: string;
   interestTags: string[];
+  likedCourses: { [keyof: string]: Date };
 }
 export interface IUserDocument extends IUser, Document {
   createCourseRecommendation: (

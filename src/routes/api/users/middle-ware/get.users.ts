@@ -1,4 +1,4 @@
-import { adaptToSecureUser } from "../../../../models/user/utils";
+import { adaptToSecureUser } from "../../../../controllers/user/utils";
 import { UserModel } from "../../../../models/user/user.model";
 import { CourseModel } from "../../../../models/course/course.model";
 

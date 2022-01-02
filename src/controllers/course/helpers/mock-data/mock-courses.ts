@@ -1,4 +1,7 @@
-import { CourseCreationData, CourseCategory } from "../../course.types";
+import {
+  CourseCreationData,
+  CourseCategory,
+} from "../../../../models/course/course.types";
 import mongoose from "mongoose";
 
 export const MOCK_COURSES: CourseCreationData[] = [
@@ -11,6 +14,7 @@ export const MOCK_COURSES: CourseCreationData[] = [
       "Learn to use Python professionally, learning both Python 2 and Python 3!",
     reviews: {},
     rating: 4,
+    likes: {},
     tags: ["bootcamp", "python2", "python3"],
   },
   {
@@ -22,6 +26,7 @@ export const MOCK_COURSES: CourseCreationData[] = [
       "Use XD to get a job in UI Design, User Interface, User Experience design, UX design & Web Design",
     reviews: {},
     rating: 4,
+    likes: {},
     tags: ["wireframe", "UX"],
   },
   {
@@ -35,6 +40,7 @@ export const MOCK_COURSES: CourseCreationData[] = [
       "60e4780446e78b15614b4a3a": "Learned a lot from this",
     },
     rating: 4,
+    likes: {},
     tags: ["wireframe", "UX"],
   },
   {
@@ -46,6 +52,7 @@ export const MOCK_COURSES: CourseCreationData[] = [
       "Learn how to nurture the relationship with your buyer, overcome obstacles, recognize buying signals, and ask for the business.",
     reviews: {},
     rating: 5,
+    likes: {},
     tags: ["sales", "Deal closure"],
   },
 ];
@@ -59,6 +66,7 @@ export const MOCK_COURSES_2: CourseCreationData[] = [
     description: "Learn sales leadership and strategic plans",
     reviews: {},
     rating: 3,
+    likes: {},
     tags: [],
   },
   {
@@ -70,6 +78,7 @@ export const MOCK_COURSES_2: CourseCreationData[] = [
       "This course shows how to build a product roadmap for your business—and gain critical stakeholder buy-in. See examples of what roadmaps might look like, and spend time learning the tools and techniques necessary to map the projects for your specific organization.",
     reviews: {},
     rating: 4,
+    likes: {},
     tags: ["Road map"],
   },
   {
@@ -83,6 +92,7 @@ export const MOCK_COURSES_2: CourseCreationData[] = [
       "60e4780446e78b15614b4a3a": "Learned a lot from this",
     },
     rating: 4,
+    likes: {},
     tags: ["Marketing", "automation", "Active Campaign"],
   },
   {
@@ -94,6 +104,7 @@ export const MOCK_COURSES_2: CourseCreationData[] = [
       "In this course, learn about the various database options available for Node.js applications, so that you can select the right database for your app.",
     reviews: {},
     rating: 3,
+    likes: {},
     tags: ["databases"],
   },
 ];

@@ -8,6 +8,7 @@ import {
   getCourseDetailById,
   retrieveAllCoursesFromDb,
 } from "./courses/middle-ware/get.courses";
+import { toggleLikes } from "./courses/middle-ware/patch.courses";
 import { createCourseRecommendation } from "./courses/middle-ware/post.courses";
 import {
   categoryParamSanitizer,
@@ -15,6 +16,7 @@ import {
   getAllCoursesLimitSkipBodyValidator,
   getParamIdValidator,
   postNewCourseValidator,
+  userIdValidator,
   validate,
 } from "./validators";
 
@@ -47,6 +49,15 @@ router.delete(
   deleteCourseRecommendationsValidator(),
   validate,
   deleteCourseRecommendations
+);
+
+router.patch(
+  "/:id/like",
+  routeProtector,
+  secureRequest,
+  [...getParamIdValidator()],
+  validate,
+  toggleLikes
 );
 
 export default router;

@@ -77,4 +77,5 @@ router.patch(
   validate,
   updateUserJobTitleDepartment
 );
+
 export default router;

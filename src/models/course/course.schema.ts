@@ -30,6 +30,11 @@ const CourseSchema: Schema = new Schema(
       required: false,
       default: {},
     },
+    likes: {
+      type: Schema.Types.Mixed,
+      required: true,
+      default: {},
+    },
   },
   {
     timestamps: true,

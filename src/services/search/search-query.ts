@@ -1,5 +1,5 @@
-import { searchCoursesByKeyword } from "../../models/course/course.search";
-import { searchUsersByKeyword } from "../../models/user/user.search";
+import { searchCoursesByKeyword } from "../../controllers/course/course.search";
+import { searchUsersByKeyword } from "../../controllers/user/user.search";
 import { ISearchResults } from "./search.types";
 
 export async function performSearchQuery(
