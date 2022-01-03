@@ -78,4 +78,12 @@ router.patch(
   updateUserJobTitleDepartment
 );
 
+router.patch(
+  "/:id/follow",
+  routeProtector,
+  secureRequest,
+  [...getParamIdValidator()],
+  validate
+);
+
 export default router;
