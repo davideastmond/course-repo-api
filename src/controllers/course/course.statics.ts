@@ -1,9 +1,5 @@
 import { CourseModel } from "../../models/course/course.model";
-import {
-  ICourse,
-  ICourseDocument,
-  ILikeToggleActionResult,
-} from "../../models/course/course.types";
+import { ILikeToggleActionResult } from "../../models/course/course.types";
 import { UserModel } from "../../models/user/user.model";
 import { IUserDocument } from "../../models/user/user.types";
 

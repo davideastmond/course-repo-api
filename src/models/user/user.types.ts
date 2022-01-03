@@ -21,6 +21,8 @@ export interface IUser extends Document {
   department: string;
   interestTags: string[];
   likedCourses: { [keyof: string]: Date };
+  following: { [keyof: string]: Date };
+  followedBy: { [keyof: string]: Date };
 }
 
 export interface ISecureAdaptedUser {
@@ -35,6 +37,8 @@ export interface ISecureAdaptedUser {
   department: string;
   interestTags: string[];
   likedCourses: { [keyof: string]: Date };
+  following: { [keyof: string]: Date };
+  followedBy: { [keyof: string]: Date };
 }
 export interface IUserDocument extends IUser, Document {
   createCourseRecommendation: (
