@@ -4,6 +4,7 @@ import {
   createCourseRecommendation,
   deleteCourseRecommendations,
   reconcileWithCourses,
+  toggleFollowForUser,
 } from "../../controllers/user/user.methods";
 import { findOneByGoogleIdOrCreate } from "../../controllers/user/user.statics";
 
@@ -45,6 +46,8 @@ const UserSchema: Schema = new Schema(
       required: false,
       default: "",
     },
+    following: { type: Schema.Types.Mixed, required: true, default: {} },
+    followedBy: { type: Schema.Types.Mixed, required: true, default: {} },
   },
   {
     timestamps: true,
@@ -64,4 +67,5 @@ UserSchema.methods.deleteInterestTags = deleteInterestTags;
 UserSchema.methods.createCourseRecommendation = createCourseRecommendation;
 UserSchema.methods.deleteCourseRecommendations = deleteCourseRecommendations;
 UserSchema.methods.reconcileWithCourses = reconcileWithCourses;
+UserSchema.methods.toggleFollowForUser = toggleFollowForUser;
 export default UserSchema;
