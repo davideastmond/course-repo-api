@@ -40,6 +40,17 @@ export interface ISecureAdaptedUser {
   following: { [keyof: string]: Date };
   followedBy: { [keyof: string]: Date };
 }
+
+export type TToggleFollowReturnData = {
+  sourceUser: ISecureAdaptedUser;
+  targetUser: ISecureAdaptedUser;
+  actionTaken: ToggleFollowAction;
+};
+
+export enum ToggleFollowAction {
+  Follow = "follow",
+  Unfollow = "unfollow",
+}
 export interface IUserDocument extends IUser, Document {
   createCourseRecommendation: (
     this: IUserDocument,
@@ -54,6 +65,10 @@ export interface IUserDocument extends IUser, Document {
     courseIds: string[]
   ) => Promise<ISecureAdaptedUser>;
   reconcileWithCourses: (this: IUserDocument) => Promise<IUserDocument>;
+  toggleFollowForUser: (
+    this: IUserDocument,
+    targetUserId: string
+  ) => Promise<TToggleFollowReturnData>;
 }
 export interface IUserModel extends Model<IUserDocument> {
   findOneByGoogleIdOrCreate: (

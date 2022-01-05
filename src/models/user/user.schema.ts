@@ -4,6 +4,7 @@ import {
   createCourseRecommendation,
   deleteCourseRecommendations,
   reconcileWithCourses,
+  toggleFollowForUser,
 } from "../../controllers/user/user.methods";
 import { findOneByGoogleIdOrCreate } from "../../controllers/user/user.statics";
 
@@ -66,4 +67,5 @@ UserSchema.methods.deleteInterestTags = deleteInterestTags;
 UserSchema.methods.createCourseRecommendation = createCourseRecommendation;
 UserSchema.methods.deleteCourseRecommendations = deleteCourseRecommendations;
 UserSchema.methods.reconcileWithCourses = reconcileWithCourses;
+UserSchema.methods.toggleFollowForUser = toggleFollowForUser;
 export default UserSchema;

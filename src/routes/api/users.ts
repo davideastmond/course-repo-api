@@ -11,7 +11,10 @@ import {
   getRequestingUser,
   getUserById,
 } from "./users/middle-ware/get.users";
-import { updateUserJobTitleDepartment } from "./users/middle-ware/patch.users";
+import {
+  toggleFollowUser,
+  updateUserJobTitleDepartment,
+} from "./users/middle-ware/patch.users";
 import { updateUserInterestTags } from "./users/middle-ware/post.users";
 import {
   getParamIdValidator,
@@ -83,7 +86,8 @@ router.patch(
   routeProtector,
   secureRequest,
   [...getParamIdValidator()],
-  validate
+  validate,
+  toggleFollowUser
 );
 
 export default router;
