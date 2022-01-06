@@ -4,6 +4,7 @@ import {
   ICourseDocument,
   ICourseRecommendationSubmission,
 } from "../course/course.types";
+import { INotificationDocument } from "../notification/notification.types";
 
 export interface IUser extends Document {
   firstName: string;
@@ -23,6 +24,10 @@ export interface IUser extends Document {
   likedCourses: { [keyof: string]: Date };
   following: { [keyof: string]: Date };
   followedBy: { [keyof: string]: Date };
+  notifications: {
+    unread: Array<INotificationDocument>;
+    read: Array<string>;
+  };
 }
 
 export interface ISecureAdaptedUser {

@@ -7,6 +7,7 @@ import {
   toggleFollowForUser,
 } from "../../controllers/user/user.methods";
 import { findOneByGoogleIdOrCreate } from "../../controllers/user/user.statics";
+import NotificationSchema from "../notification/notification.schema";
 
 interface SchemaOptionsWithPojoToMixed extends SchemaOptions {
   typePojoToMixed: boolean;
@@ -48,6 +49,10 @@ const UserSchema: Schema = new Schema(
     },
     following: { type: Schema.Types.Mixed, required: true, default: {} },
     followedBy: { type: Schema.Types.Mixed, required: true, default: {} },
+    notifications: {
+      unread: [NotificationSchema],
+      read: [String],
+    },
   },
   {
     timestamps: true,
