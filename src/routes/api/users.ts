@@ -90,4 +90,12 @@ router.patch(
   toggleFollowUser
 );
 
+router.get(
+  "/:id/notifications",
+  routeProtector,
+  secureRequest,
+  [...getParamIdValidator()],
+  validate
+);
+
 export default router;
