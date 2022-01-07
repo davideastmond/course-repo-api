@@ -1,5 +1,11 @@
-import { Schema, SchemaOptions } from "mongoose";
-export interface SchemaOptionsWithPojoToMixed extends SchemaOptions {
+import { Schema, SchemaOptions, model } from "mongoose";
+import { push } from "../../controllers/notification/notification.statics";
+
+import {
+  INotificationDocument,
+  INotificationModel,
+} from "./notification.types";
+interface SchemaOptionsWithPojoToMixed extends SchemaOptions {
   typePojoToMixed: boolean;
 }
 
@@ -19,4 +25,10 @@ const NotificationSchema: Schema = new Schema(
   } as SchemaOptionsWithPojoToMixed
 );
 
+NotificationSchema.statics.push = push;
+
+export const NotificationModel = model<
+  INotificationDocument,
+  INotificationModel
+>("notifications", NotificationSchema, "notifications");
 export default NotificationSchema;

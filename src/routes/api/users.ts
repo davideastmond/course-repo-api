@@ -95,7 +95,10 @@ router.get(
   routeProtector,
   secureRequest,
   [...getParamIdValidator()],
-  validate
+  validate,
+  (req: any, res: any) => {
+    return res.status(200).send({});
+  }
 );
 
 export default router;

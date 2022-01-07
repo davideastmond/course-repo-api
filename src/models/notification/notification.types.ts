@@ -1,4 +1,4 @@
-import mongoose, { Document, Model } from "mongoose";
+import { Document, Model } from "mongoose";
 
 export interface INotification {
   sourceId: string;
@@ -16,5 +16,25 @@ export enum INotificationType {
   CourseRecommendationLike = "course_like",
 }
 
+export interface INotificationPushData {
+  notification: INotificationDocument;
+  sourceId: string;
+  targetId: string;
+}
+
 export interface INotificationDocument extends INotification, Document {}
-export interface INotificationModel extends Model<INotificationDocument> {}
+export interface INotificationModel extends Model<INotificationDocument> {
+  push: ({
+    type,
+    sourceId,
+    targetId,
+    message,
+    url,
+  }: {
+    type: INotificationType;
+    sourceId: string;
+    targetId: string;
+    message: string;
+    url?: string;
+  }) => Promise<INotificationPushData>;
+}

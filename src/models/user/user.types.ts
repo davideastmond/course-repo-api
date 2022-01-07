@@ -24,10 +24,7 @@ export interface IUser extends Document {
   likedCourses: { [keyof: string]: Date };
   following: { [keyof: string]: Date };
   followedBy: { [keyof: string]: Date };
-  notifications: {
-    unread: Array<INotificationDocument>;
-    read: Array<string>;
-  };
+  notifications: Array<INotificationDocument>;
 }
 
 export interface ISecureAdaptedUser {
@@ -44,6 +41,7 @@ export interface ISecureAdaptedUser {
   likedCourses: { [keyof: string]: Date };
   following: { [keyof: string]: Date };
   followedBy: { [keyof: string]: Date };
+  notifications: Array<INotificationDocument>;
 }
 
 export type TToggleFollowReturnData = {
