@@ -10,6 +10,7 @@ import {
   getInterestsByUserIdMe,
   getRequestingUser,
   getUserById,
+  getUserNotifications,
 } from "./users/middle-ware/get.users";
 import {
   toggleFollowUser,
@@ -96,9 +97,7 @@ router.get(
   secureRequest,
   [...getParamIdValidator()],
   validate,
-  (req: any, res: any) => {
-    return res.status(200).send({});
-  }
+  getUserNotifications
 );
 
 export default router;

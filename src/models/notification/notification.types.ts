@@ -8,10 +8,10 @@ export interface INotification {
   createdAt: Date;
   updatedAt: Date;
   read: boolean;
-  type: INotificationType;
+  type: NotificationType;
 }
 
-export enum INotificationType {
+export enum NotificationType {
   UserFollow = "user_follow",
   CourseRecommendationLike = "course_like",
 }
@@ -31,7 +31,7 @@ export interface INotificationModel extends Model<INotificationDocument> {
     message,
     url,
   }: {
-    type: INotificationType;
+    type: NotificationType;
     sourceId: string;
     targetId: string;
     message: string;

@@ -1,6 +1,6 @@
 import { NotificationModel } from "../../models/notification/notification.schema";
 import {
-  INotificationType,
+  NotificationType,
   INotificationPushData,
 } from "../../models/notification/notification.types";
 import { UserModel } from "../../models/user/user.model";
@@ -12,7 +12,7 @@ export async function push({
   message,
   url,
 }: {
-  type: INotificationType;
+  type: NotificationType;
   sourceId: string;
   targetId: string;
   message: string;
@@ -38,3 +38,11 @@ export async function push({
   await target.save();
   return { notification, sourceId, targetId };
 }
+
+export async function markAsRead({
+  notificationId,
+  targetId,
+}: {
+  notificationId: string;
+  targetId: string;
+}) {}

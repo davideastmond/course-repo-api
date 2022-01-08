@@ -1,5 +1,7 @@
 import { CourseModel } from "../../models/course/course.model";
 import { ILikeToggleActionResult } from "../../models/course/course.types";
+import { NotificationModel } from "../../models/notification/notification.schema";
+import { NotificationType } from "../../models/notification/notification.types";
 import { UserModel } from "../../models/user/user.model";
 import { IUserDocument } from "../../models/user/user.types";
 
@@ -37,6 +39,20 @@ export async function doToggleCourseLike({
       course.likes[`${user._id.toString()}`] = new Date();
       user.markModified("likedCourses");
       course.markModified("likes");
+
+      // Need to find the user who created the course recommendation that is being liked
+      const targetUser = await UserModel.findById(course.postedByUserId);
+      if (targetUser) {
+        await NotificationModel.push({
+          type: NotificationType.CourseRecommendationLike,
+          sourceId: user._id.toString(),
+          targetId: targetUser._id.toString(),
+          message: `${user.firstName} ${
+            user.lastName || ""
+          } liked your recommendation ${course.title}`,
+        });
+      }
+
       await user.save();
       await course.save();
       const allCourses = await CourseModel.find();

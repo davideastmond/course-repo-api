@@ -4,7 +4,7 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import { UserModel } from "../../models/user/user.model";
 import { createDummyUsers } from "../user/utils/create-dummy-users";
 import { NotificationModel } from "../../models/notification/notification.schema";
-import { INotificationType } from "../../models/notification/notification.types";
+import { NotificationType } from "../../models/notification/notification.types";
 
 let mongoServer: any;
 let spy: any;
@@ -36,7 +36,7 @@ describe("notification tests", () => {
     const targetId = dummyUsers[1]._id.toString();
 
     const res = await NotificationModel.push({
-      type: INotificationType.UserFollow,
+      type: NotificationType.UserFollow,
       sourceId,
       targetId,
       message: `${dummyUsers[0].firstName} started following you`,
