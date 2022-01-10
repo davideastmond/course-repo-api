@@ -35,7 +35,7 @@ describe("notification tests", () => {
     const sourceId = dummyUsers[0]._id.toString();
     const targetId = dummyUsers[1]._id.toString();
 
-    const res = await NotificationModel.push({
+    const res = await NotificationModel.pushOne({
       type: NotificationType.UserFollow,
       sourceId,
       targetId,

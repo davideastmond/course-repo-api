@@ -24,7 +24,7 @@ export interface INotificationPushData {
 
 export interface INotificationDocument extends INotification, Document {}
 export interface INotificationModel extends Model<INotificationDocument> {
-  push: ({
+  pushOn: ({
     type,
     sourceId,
     targetId,
@@ -37,4 +37,11 @@ export interface INotificationModel extends Model<INotificationDocument> {
     message: string;
     url?: string;
   }) => Promise<INotificationPushData>;
+  markOneAsRead: ({
+    notificationId,
+    targetId,
+  }: {
+    notificationId: string;
+    targetId: string;
+  }) => Promise<INotificationDocument[]>;
 }

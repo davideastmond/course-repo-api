@@ -1,5 +1,8 @@
 import { Schema, SchemaOptions, model } from "mongoose";
-import { push } from "../../controllers/notification/notification.statics";
+import {
+  markOneAsRead,
+  pushOn,
+} from "../../controllers/notification/notification.statics";
 
 import {
   INotificationDocument,
@@ -25,7 +28,8 @@ const NotificationSchema: Schema = new Schema(
   } as SchemaOptionsWithPojoToMixed
 );
 
-NotificationSchema.statics.push = push;
+NotificationSchema.statics.pushOn = pushOn;
+NotificationSchema.statics.markOneAsRead = markOneAsRead;
 
 export const NotificationModel = model<
   INotificationDocument,

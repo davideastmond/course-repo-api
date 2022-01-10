@@ -126,7 +126,7 @@ export async function toggleFollowForUser(
     targetUser.followedBy[`${this._id.toString()}`] = new Date();
     this.markModified("following");
     targetUser.markModified("followedBy");
-    await NotificationModel.push({
+    await NotificationModel.pushOn({
       type: NotificationType.UserFollow,
       sourceId: this._id.toString(),
       targetId: targetUser._id.toString(),

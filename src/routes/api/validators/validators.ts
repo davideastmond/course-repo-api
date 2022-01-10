@@ -6,6 +6,9 @@ export const getParamIdValidator = (): any[] => {
 export const getCourseIdValidator = (): any[] => {
   return [param("courseId").not().isEmpty().trim().escape()];
 };
+export const getNotificationIdValidator = (): any[] => {
+  return [param("notificationId").not().isEmpty().trim().escape()];
+};
 
 export const validate = (req: any, res: any, next: any): any => {
   const errors = validationResult(req);

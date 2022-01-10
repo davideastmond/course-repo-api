@@ -1,5 +1,6 @@
 import { IUserDocument } from "../../../../models/user/user.types";
 import { UserModel } from "../../../../models/user/user.model";
+import { NotificationModel } from "../../../../models/notification/notification.schema";
 
 export const updateUserJobTitleDepartment = async (req: any, res: any) => {
   const { jobTitle, department } = req.body;
@@ -23,6 +24,21 @@ export const toggleFollowUser = async (req: any, res: any) => {
     const user = req.user as IUserDocument;
     const { id } = req.params;
     const result = await user.toggleFollowForUser(id);
+    return res.status(200).send(result);
+  } catch (exception) {
+    return res.status(500).send({ error: exception.message });
+  }
+};
+
+export const dismissNotification = async (req: any, res: any) => {
+  if (!req.user)
+    return res.status(400).send({ error: "User is not authenticated" });
+  try {
+    const notificationId = req.params.notificationId;
+    const result = await NotificationModel.markOneAsRead({
+      notificationId,
+      targetId: req.user.id,
+    });
     return res.status(200).send(result);
   } catch (exception) {
     return res.status(500).send({ error: exception.message });

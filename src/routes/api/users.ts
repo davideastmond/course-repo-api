@@ -13,11 +13,13 @@ import {
   getUserNotifications,
 } from "./users/middle-ware/get.users";
 import {
+  dismissNotification,
   toggleFollowUser,
   updateUserJobTitleDepartment,
 } from "./users/middle-ware/patch.users";
 import { updateUserInterestTags } from "./users/middle-ware/post.users";
 import {
+  getNotificationIdValidator,
   getParamIdValidator,
   newInterestTagValidator,
   patchUserProfileJobTitleDepartmentValidator,
@@ -100,4 +102,12 @@ router.get(
   getUserNotifications
 );
 
+router.patch(
+  "/:id/notifications/:notificationId",
+  routeProtector,
+  secureRequest,
+  [...getParamIdValidator(), ...getNotificationIdValidator()],
+  validate,
+  dismissNotification
+);
 export default router;

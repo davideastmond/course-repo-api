@@ -43,7 +43,7 @@ export async function doToggleCourseLike({
       // Need to find the user who created the course recommendation that is being liked
       const targetUser = await UserModel.findById(course.postedByUserId);
       if (targetUser) {
-        await NotificationModel.push({
+        await NotificationModel.pushOn({
           type: NotificationType.CourseRecommendationLike,
           sourceId: user._id.toString(),
           targetId: targetUser._id.toString(),
