@@ -44,4 +44,11 @@ export interface INotificationModel extends Model<INotificationDocument> {
     notificationId: string;
     targetId: string;
   }) => Promise<INotificationDocument[]>;
+  deleteNotificationById: ({
+    notificationId,
+    targetId,
+  }: {
+    notificationId: string;
+    targetId: string;
+  }) => Promise<INotificationDocument[]>;
 }

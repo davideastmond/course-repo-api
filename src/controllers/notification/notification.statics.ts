@@ -71,3 +71,21 @@ export async function markOneAsRead({
     );
   }
 }
+
+export async function deleteNotificationById({
+  notificationId,
+  targetId,
+}: {
+  notificationId: string;
+  targetId: string;
+}): Promise<INotificationDocument[]> {
+  const targetUser = await UserModel.findById(targetId);
+  await NotificationModel.deleteOne({ id: notificationId });
+  const filteredNotifications = targetUser.notifications.filter(
+    (notification) => notification._id.toString() !== notificationId
+  );
+  targetUser.notifications = filteredNotifications;
+  targetUser.markModified("notifications");
+  await targetUser.save();
+  return targetUser.notifications;
+}

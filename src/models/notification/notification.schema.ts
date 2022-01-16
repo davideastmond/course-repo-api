@@ -1,5 +1,6 @@
 import { Schema, SchemaOptions, model } from "mongoose";
 import {
+  deleteNotificationById,
   markOneAsRead,
   pushOn,
 } from "../../controllers/notification/notification.statics";
@@ -30,6 +31,7 @@ const NotificationSchema: Schema = new Schema(
 
 NotificationSchema.statics.pushOn = pushOn;
 NotificationSchema.statics.markOneAsRead = markOneAsRead;
+NotificationSchema.statics.deleteNotificationById = deleteNotificationById;
 
 export const NotificationModel = model<
   INotificationDocument,

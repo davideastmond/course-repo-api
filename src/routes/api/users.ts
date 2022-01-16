@@ -1,9 +1,13 @@
 import { Router } from "express";
+
 import {
   routeProtector,
   secureRequest,
 } from "../../middleware/route-protector";
-import { deleteTagsByIdAndTagTitles } from "./users/middle-ware/delete.users";
+import {
+  deleteNotificationById,
+  deleteTagsByIdAndTagTitles,
+} from "./users/middle-ware/delete.users";
 import {
   getCoursesByUserId,
   getInterestsByUserId,
@@ -110,4 +114,14 @@ router.patch(
   validate,
   dismissNotification
 );
+
+router.delete(
+  "/:id/notifications/:notificationId",
+  routeProtector,
+  secureRequest,
+  [...getParamIdValidator(), ...getNotificationIdValidator()],
+  validate,
+  deleteNotificationById
+);
+
 export default router;
