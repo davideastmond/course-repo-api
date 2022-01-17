@@ -6,7 +6,7 @@ import {
 } from "../../models/notification/notification.types";
 import { UserModel } from "../../models/user/user.model";
 
-export async function pushOn({
+export async function pushOne({
   type,
   sourceId,
   targetId,

@@ -24,7 +24,7 @@ export interface INotificationPushData {
 
 export interface INotificationDocument extends INotification, Document {}
 export interface INotificationModel extends Model<INotificationDocument> {
-  pushOn: ({
+  pushOne: ({
     type,
     sourceId,
     targetId,

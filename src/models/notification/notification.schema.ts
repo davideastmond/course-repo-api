@@ -2,7 +2,7 @@ import { Schema, SchemaOptions, model } from "mongoose";
 import {
   deleteNotificationById,
   markOneAsRead,
-  pushOn,
+  pushOne,
 } from "../../controllers/notification/notification.statics";
 
 import {
@@ -29,7 +29,7 @@ const NotificationSchema: Schema = new Schema(
   } as SchemaOptionsWithPojoToMixed
 );
 
-NotificationSchema.statics.pushOn = pushOn;
+NotificationSchema.statics.pushOne = pushOne;
 NotificationSchema.statics.markOneAsRead = markOneAsRead;
 NotificationSchema.statics.deleteNotificationById = deleteNotificationById;
 
