@@ -1,4 +1,4 @@
-import { IUser, ISecureAdaptedUser } from "../user.types";
+import { IUser, ISecureAdaptedUser } from "../../../models/user/user.types";
 
 export const adaptToSecureUser = (userDocument: IUser): ISecureAdaptedUser => {
   return {
@@ -12,5 +12,9 @@ export const adaptToSecureUser = (userDocument: IUser): ISecureAdaptedUser => {
     updatedAt: userDocument.updatedAt,
     department: userDocument.department,
     interestTags: userDocument.interestTags,
+    likedCourses: userDocument.likedCourses,
+    following: userDocument.following,
+    followedBy: userDocument.followedBy,
+    notifications: [],
   };
 };

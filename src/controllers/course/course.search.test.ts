@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { MOCK_COURSES, MOCK_COURSES_2 } from "./helpers/mock-data";
-import { CourseModel } from "./course.model";
+
 import { searchCoursesByKeyword } from "./course.search";
+import { CourseModel } from "../../models/course/course.model";
 let mongoServer: any;
 
 const options: mongoose.ConnectionOptions = {

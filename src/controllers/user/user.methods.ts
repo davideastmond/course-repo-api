@@ -1,13 +1,22 @@
 import mongoose from "mongoose";
 import _pullAll from "lodash/pullAll";
-import { CourseModel } from "../course/course.model";
-import {
-  ICourseDocument,
-  ICourseRecommendationSubmission,
-} from "../course/course.types";
-import { ISecureAdaptedUser, IUserDocument } from "./user.types";
+
 import { adaptToSecureUser } from "./utils";
 import { decodeString } from "../../services/html-parser/utils";
+import { CourseModel } from "../../models/course/course.model";
+import {
+  ICourseRecommendationSubmission,
+  ICourseDocument,
+} from "../../models/course/course.types";
+import {
+  IUserDocument,
+  ISecureAdaptedUser,
+  ToggleFollowAction,
+  TToggleFollowReturnData,
+} from "../../models/user/user.types";
+import { UserModel } from "../../models/user/user.model";
+import { NotificationModel } from "../../models/notification/notification.schema";
+import { NotificationType } from "../../models/notification/notification.types";
 
 export async function createCourseRecommendation(
   this: IUserDocument,
@@ -21,6 +30,7 @@ export async function createCourseRecommendation(
     category: data.category,
     tags: data.tags,
     notes: data.notes,
+    likes: {},
     postedByUserId: this._id,
   });
 
@@ -86,4 +96,48 @@ export async function reconcileWithCourses(
   this.courses = coursesToBindToUser;
   await this.save();
   return this;
+}
+
+export async function toggleFollowForUser(
+  this: IUserDocument,
+  targetUserId: string
+): Promise<TToggleFollowReturnData> {
+  // The source user is source of truth
+  const targetUser = await UserModel.findById(targetUserId);
+  if (!targetUser)
+    throw new Error(`Unable to find user with id ${targetUserId}`);
+
+  if (this.following[`${targetUser._id.toString()}`]) {
+    const action = ToggleFollowAction.Unfollow;
+    delete this.following[`${targetUser._id.toString()}`];
+    delete targetUser.followedBy[`${this._id.toString()}`];
+    this.markModified("following");
+    targetUser.markModified("followedBy");
+    await this.save();
+    await targetUser.save();
+    return {
+      actionTaken: action,
+      sourceUser: adaptToSecureUser(this),
+      targetUser: adaptToSecureUser(targetUser),
+    };
+  } else {
+    const action = ToggleFollowAction.Follow;
+    this.following[`${targetUser._id.toString()}`] = new Date();
+    targetUser.followedBy[`${this._id.toString()}`] = new Date();
+    this.markModified("following");
+    targetUser.markModified("followedBy");
+    await NotificationModel.pushOne({
+      type: NotificationType.UserFollow,
+      sourceId: this._id.toString(),
+      targetId: targetUser._id.toString(),
+      message: `${this.firstName} followed you`,
+    });
+    await this.save();
+    await targetUser.save();
+    return {
+      actionTaken: action,
+      sourceUser: adaptToSecureUser(this),
+      targetUser: adaptToSecureUser(targetUser),
+    };
+  }
 }

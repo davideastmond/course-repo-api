@@ -30,6 +30,7 @@ export interface ICourse {
   rating: number;
   tags: Array<string>;
   notes: { [keyof: string]: { [key in number]: string } };
+  likes: { [keyof: string]: Date };
   createdAt: Date;
   updatedAt: Date;
 }
@@ -43,6 +44,7 @@ export type CourseCreationData = {
   reviews: {
     [keyof: string]: string;
   };
+  likes: {};
   rating: number;
   tags: Array<string>;
 };
@@ -71,6 +73,11 @@ export interface ICourseRecommendationSubmission {
 export enum CourseQueryType {
   All = "all",
   ByTags = "by_tags",
+}
+export interface ILikeToggleActionResult {
+  courses: ICourse[];
+  actionTaken: "like" | "unlike";
+  courseChanged: ICourse;
 }
 
 export interface ICourseDocument extends ICourse, Document {}

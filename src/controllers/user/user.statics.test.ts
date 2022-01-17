@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { MOCK_USER_DATA } from "./mock-user-data";
-import { UserModel } from "./user.model";
+import { UserModel } from "../../models/user/user.model";
 
 let mongoServer: any;
 let spy: any;

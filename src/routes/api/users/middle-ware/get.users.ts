@@ -1,4 +1,4 @@
-import { adaptToSecureUser } from "../../../../models/user/utils";
+import { adaptToSecureUser } from "../../../../controllers/user/utils";
 import { UserModel } from "../../../../models/user/user.model";
 import { CourseModel } from "../../../../models/course/course.model";
 
@@ -83,6 +83,18 @@ export const getCoursesByUserId = async (req: any, res: any): Promise<void> => {
       postedByUserId: req.params.id,
     });
     return res.status(200).send(userCourses);
+  } catch (exception) {
+    return res.status(500).send({ error: exception.message });
+  }
+};
+
+export const getUserNotifications = async (
+  req: any,
+  res: any
+): Promise<void> => {
+  try {
+    const notifications = req.user.notifications;
+    res.status(200).send(notifications);
   } catch (exception) {
     return res.status(500).send({ error: exception.message });
   }

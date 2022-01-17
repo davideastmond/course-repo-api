@@ -1,11 +1,12 @@
 require("dotenv").config();
 import passport from "passport";
+import {
+  IGoogleData,
+  getUserFromGoogleData,
+} from "../controllers/user/utils/create-user-from-google-data";
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 import { UserModel } from "../models/user/user.model";
-import {
-  getUserFromGoogleData,
-  IGoogleData,
-} from "../models/utils/create-user-from-google-data";
+
 const isProduction = !(
   process.env.NODE_ENV && process.env.NODE_ENV.match("development")
 );

@@ -1,9 +1,11 @@
 import { Document, Model } from "mongoose";
+import { IAdaptedUser } from "../../controllers/user/utils/create-user-from-google-data";
 import {
   ICourseDocument,
   ICourseRecommendationSubmission,
 } from "../course/course.types";
-import { IAdaptedUser } from "../utils/create-user-from-google-data";
+import { INotificationDocument } from "../notification/notification.types";
+
 export interface IUser extends Document {
   firstName: string;
   lastName: string;
@@ -19,6 +21,10 @@ export interface IUser extends Document {
   updatedAt: Date;
   department: string;
   interestTags: string[];
+  likedCourses: { [keyof: string]: Date };
+  following: { [keyof: string]: Date };
+  followedBy: { [keyof: string]: Date };
+  notifications: Array<INotificationDocument>;
 }
 
 export interface ISecureAdaptedUser {
@@ -32,6 +38,21 @@ export interface ISecureAdaptedUser {
   updatedAt: Date;
   department: string;
   interestTags: string[];
+  likedCourses: { [keyof: string]: Date };
+  following: { [keyof: string]: Date };
+  followedBy: { [keyof: string]: Date };
+  notifications: Array<INotificationDocument>;
+}
+
+export type TToggleFollowReturnData = {
+  sourceUser: ISecureAdaptedUser;
+  targetUser: ISecureAdaptedUser;
+  actionTaken: ToggleFollowAction;
+};
+
+export enum ToggleFollowAction {
+  Follow = "follow",
+  Unfollow = "unfollow",
 }
 export interface IUserDocument extends IUser, Document {
   createCourseRecommendation: (
@@ -47,6 +68,10 @@ export interface IUserDocument extends IUser, Document {
     courseIds: string[]
   ) => Promise<ISecureAdaptedUser>;
   reconcileWithCourses: (this: IUserDocument) => Promise<IUserDocument>;
+  toggleFollowForUser: (
+    this: IUserDocument,
+    targetUserId: string
+  ) => Promise<TToggleFollowReturnData>;
 }
 export interface IUserModel extends Model<IUserDocument> {
   findOneByGoogleIdOrCreate: (
