@@ -15,6 +15,8 @@ import {
   TToggleFollowReturnData,
 } from "../../models/user/user.types";
 import { UserModel } from "../../models/user/user.model";
+import { NotificationModel } from "../../models/notification/notification.schema";
+import { NotificationType } from "../../models/notification/notification.types";
 
 export async function createCourseRecommendation(
   this: IUserDocument,
@@ -124,6 +126,12 @@ export async function toggleFollowForUser(
     targetUser.followedBy[`${this._id.toString()}`] = new Date();
     this.markModified("following");
     targetUser.markModified("followedBy");
+    await NotificationModel.pushOne({
+      type: NotificationType.UserFollow,
+      sourceId: this._id.toString(),
+      targetId: targetUser._id.toString(),
+      message: `${this.firstName} followed you`,
+    });
     await this.save();
     await targetUser.save();
     return {

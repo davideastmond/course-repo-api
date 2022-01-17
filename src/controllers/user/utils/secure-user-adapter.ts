@@ -15,5 +15,6 @@ export const adaptToSecureUser = (userDocument: IUser): ISecureAdaptedUser => {
     likedCourses: userDocument.likedCourses,
     following: userDocument.following,
     followedBy: userDocument.followedBy,
+    notifications: [],
   };
 };

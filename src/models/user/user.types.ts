@@ -4,6 +4,7 @@ import {
   ICourseDocument,
   ICourseRecommendationSubmission,
 } from "../course/course.types";
+import { INotificationDocument } from "../notification/notification.types";
 
 export interface IUser extends Document {
   firstName: string;
@@ -23,6 +24,7 @@ export interface IUser extends Document {
   likedCourses: { [keyof: string]: Date };
   following: { [keyof: string]: Date };
   followedBy: { [keyof: string]: Date };
+  notifications: Array<INotificationDocument>;
 }
 
 export interface ISecureAdaptedUser {
@@ -39,6 +41,7 @@ export interface ISecureAdaptedUser {
   likedCourses: { [keyof: string]: Date };
   following: { [keyof: string]: Date };
   followedBy: { [keyof: string]: Date };
+  notifications: Array<INotificationDocument>;
 }
 
 export type TToggleFollowReturnData = {

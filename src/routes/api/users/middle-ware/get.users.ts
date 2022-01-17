@@ -87,3 +87,15 @@ export const getCoursesByUserId = async (req: any, res: any): Promise<void> => {
     return res.status(500).send({ error: exception.message });
   }
 };
+
+export const getUserNotifications = async (
+  req: any,
+  res: any
+): Promise<void> => {
+  try {
+    const notifications = req.user.notifications;
+    res.status(200).send(notifications);
+  } catch (exception) {
+    return res.status(500).send({ error: exception.message });
+  }
+};

@@ -1,3 +1,4 @@
+import NotificationSchema from "../notification/notification.schema";
 import { Schema, SchemaOptions } from "mongoose";
 import {
   deleteInterestTags,
@@ -48,6 +49,7 @@ const UserSchema: Schema = new Schema(
     },
     following: { type: Schema.Types.Mixed, required: true, default: {} },
     followedBy: { type: Schema.Types.Mixed, required: true, default: {} },
+    notifications: { type: [NotificationSchema], required: true, default: [] },
   },
   {
     timestamps: true,
